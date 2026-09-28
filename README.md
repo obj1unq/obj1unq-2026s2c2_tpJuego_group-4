@@ -8,7 +8,8 @@
 
 ## Capturas
 
-(agregar)
+![Uploading imagen.png…]()
+
 
 ## Reglas de Juego / Instrucciones
 
