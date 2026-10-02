@@ -1,20 +1,41 @@
 import wollok.game.*
+import direcciones.*
+import personaje.*
+import puerta.*
+import cosas.*
 
-import juego.pepita
+
+
 
 object config {
-
 	method configurarEscenario() {
-		game.title("Pepita")
+		game.title("Aca debería ir el nombre del juego...")
 		game.height(10)
 		game.width(10)
+		game.boardGround("fondoGris1.jpg")
+		//game.boardGround("fondoGris2.jpg")
 	}
 }
-program PepitaGame {
 
+program Juego {
 	config.configurarEscenario()
+
+	game.addVisual(puerta)
+
+	const coso1 = new CosaUObstaculo(position = game.at(6,7))
+	game.addVisual(coso1)
+	const coso2 = new CosaUObstaculo(position = game.at(4,9))
+	game.addVisual(coso2)
+	const coso3 = new CosaUObstaculo(position = game.at(3,3))
+	game.addVisual(coso3)
+
+	game.addVisual(personaje)     //ojo en dónde se pone, porque al mover al pj este puede quedar debajo de otras imagenes
 	
-	game.addVisualCharacter(pepita)
+	// TECLAS
+	keyboard.w().onPressDo({personaje.mover(arriba)})
+	keyboard.a().onPressDo({personaje.mover(izquierda)})
+	keyboard.s().onPressDo({personaje.mover(abajo)})
+	keyboard.d().onPressDo({personaje.mover(derecha)})
 
 	game.start()
 }
