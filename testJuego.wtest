@@ -1,18 +1,37 @@
-import direcciones.*
+import wollok.game.*
 import personaje.*
-import mainJuego.*
+import puerta.*
+import cosas.*
 
 
+describe "apertura de puerta" {
+  method initialize() {
+    personaje.position(puerta.position())
+  }
 
+  test "pasar de nivel con todas las cosas" {
+    const cosa1 = new CosaUObstaculo(position = game.at(1, 1))
+    const cosa2 = new CosaUObstaculo(position = game.at(2, 2))
+    const cosa3 = new CosaUObstaculo(position = game.at(3, 3))
+    const cosasDelNivel = [cosa1, cosa2, cosa3]
+    const mochilaCompleta = [cosa1, cosa2, cosa3]
 
-//describe "group of tests for pepita" {
-//
-//  method initialize() {
-//    config.configurarEscenario()
-//  }
-//  test "pepita tiene posicion e imagen" {
-//    assert.equals(game.at(5,5), pepita.position())
-//    assert.equals("pepita.png", pepita.image())
-//  }
-//
-//}
+    puerta.abrir(mochilaCompleta, cosasDelNivel)
+
+    assert.equals(game.at(0, 3), personaje.position())
+  }
+
+  test "no abrir la puerta con solo dos cosas" {
+    const cosa1 = new CosaUObstaculo(position = game.at(1, 1))
+    const cosa2 = new CosaUObstaculo(position = game.at(2, 2))
+    const cosa3 = new CosaUObstaculo(position = game.at(3, 3))
+    const cosasDelNivel = [cosa1, cosa2, cosa3]
+    const mochilaIncompleta = [cosa1, cosa2]
+
+    assert.throwsExceptionWithMessage(
+      "No tenemos todas las cosas para abrir la puerta.",
+      { => puerta.abrir(mochilaIncompleta, cosasDelNivel) }
+    )
+    assert.equals(puerta.position(), personaje.position())
+  }
+}

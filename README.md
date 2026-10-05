@@ -1,10 +1,10 @@
-# Nombre del juego (<- borrar y completar)
+# EscapAlien
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Andrea Frank
+- Lucas Asorey
+- Alejandro Barros
 
 ## Capturas
 
@@ -13,11 +13,13 @@
 
 ## Reglas de Juego / Instrucciones
 
-(Escribirlas)
+Estas en la habitacion mas recondita de una nave espacial despues de ser Abducido, encuentra la manera escapar y salvarte!
+Cada habitacion tiene diferentes maneras de escapar
+
 
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- Comision 2 , Universidad nacional de Quilmes
+- Versión de wollok 4.2.3
+- Una vez terminado, no tenemos problemas en que el repositorio sea público 

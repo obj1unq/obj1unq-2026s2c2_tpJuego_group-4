@@ -9,7 +9,7 @@ import cosas.*
 
 object config {
 	method configurarEscenario() {
-		game.title("Aca debería ir el nombre del juego...")
+		game.title("EscapAlien")
 		game.height(10)
 		game.width(10)
 		game.boardGround("fondoGris1.jpg")
@@ -23,11 +23,10 @@ program Juego {
 	game.addVisual(puerta)
 
 	const coso1 = new CosaUObstaculo(position = game.at(6,7))
-	game.addVisual(coso1)
 	const coso2 = new CosaUObstaculo(position = game.at(4,9))
-	game.addVisual(coso2)
 	const coso3 = new CosaUObstaculo(position = game.at(3,3))
-	game.addVisual(coso3)
+	const cosasDelMapa = [coso1, coso2, coso3]
+	cosasDelMapa.forEach({ cosa => game.addVisual(cosa) })
 
 	game.addVisual(personaje)     //ojo en dónde se pone, porque al mover al pj este puede quedar debajo de otras imagenes
 	
@@ -36,6 +35,8 @@ program Juego {
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
-
+	keyboard.f().onPressDo({if(personaje.tieneLinternaEncendida()) { personaje.apagarLinterna() } else { personaje.encenderLinterna() }})
+	keyboard.e().onPressDo({personaje.interactuar(cosasDelMapa, puerta)})
+	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })
 	game.start()
 }
