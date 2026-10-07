@@ -49,5 +49,6 @@ program Juego {
 
 
 	
+	keyboard.f().onPressDo({personaje.interactuarLinterna()})
 	game.start()
 }
