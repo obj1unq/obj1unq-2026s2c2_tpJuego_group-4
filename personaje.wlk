@@ -21,8 +21,16 @@ object personaje {
     return image == "PJconLinterna.png"
   } 
 
+  method validarBuscar() {
+  
+  }
+
+  method buscar () {
+    self.validarBuscar()
+  }
+
   method buscarBarritaDentroDe(cosa){
-    if (cosa.tieneBarrita()){inventario.add(barrita) } else { self.error("No encontre nada")}
+    if (cosa.tieneBarrita()){inventario.add(barrita) cosa.removeVisual(image)} else { self.error("No encontre nada") cosa.removeVisual(image)}
   }
 }
 
