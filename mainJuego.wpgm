@@ -39,8 +39,8 @@ program Juego {
 	game.addVisual(bicho2)
 	
 
-	//const tick = game.tick(3000, bicho1.seguirPJ(), true)
-	
+	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
+	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
 	// TECLAS
 	keyboard.w().onPressDo({personaje.mover(arriba)})
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
@@ -48,6 +48,6 @@ program Juego {
 	keyboard.d().onPressDo({personaje.mover(derecha)})
 
 
-	//bicho1.start()
+	
 	game.start()
 }
