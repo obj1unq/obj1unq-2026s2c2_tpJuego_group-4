@@ -22,12 +22,15 @@ program Juego {
 
 	game.addVisual(puerta)
 
-	const coso1 = new CosaUObstaculo(position = game.at(6,7))
+	/*const coso1 = new CosaUObstaculo(position = game.at(6,7))
 	game.addVisual(coso1)
 	const coso2 = new CosaUObstaculo(position = game.at(4,9))
 	game.addVisual(coso2)
-	const coso3 = new CosaUObstaculo(position = game.at(3,3))
-	game.addVisual(coso3)
+	const coso3 = 
+	game.addVisual(coso3)*/
+	const cosas =[new CosaUObstaculo(position = game.at(3,3)), new CosaUObstaculo(position = game.at(4,9)), new CosaUObstaculo(position = game.at(6,7))]
+
+	
 
 	game.addVisual(personaje)     //ojo en dónde se pone, porque al mover al pj este puede quedar debajo de otras imagenes
 	
@@ -37,5 +40,6 @@ program Juego {
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
 	keyboard.f().onPressDo({personaje.interactuarLinterna()})
+	game.onCollideDo(personaje, cosas )
 	game.start()
 }
