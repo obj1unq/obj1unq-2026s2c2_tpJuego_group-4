@@ -45,5 +45,8 @@ program Juego {
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
 
+	bicho1.start()
+	bicho2.start()
+
 	game.start()
 }
