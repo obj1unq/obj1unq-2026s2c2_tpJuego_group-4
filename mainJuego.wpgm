@@ -7,24 +7,100 @@ import cosas.*
 
 
 
-object config {
+object config {      //evaluar si queda o no
 	method configurarEscenario() {
 		game.title("EscapAlien")
-		game.height(10)
-		game.width(10)
-		game.boardGround("fondoGris1.jpg")
-		//game.boardGround("fondoGris2.jpg")
+		game.height(20)
+		game.width(20)
+		//game.boardGround("fondoOscuro.jpg")
 	}
 }
 
+
+
+object inicio{
+	const intervalo = 1000
+	var estadoLuz = prendido
+
+
+
+	method configurarEscenario() {        // el que te deja a oscuras al inicio
+		game.title("Escenario inicial")
+		game.height(20)
+		game.width(20)
+		game.boardGround("fondoGris1.jpg")
+		self.scheculerInicial()
+		self.schedulerFinal()
+	}
+
+	method scheculerInicial() {
+		game.schedule(3000, {self.prender()})
+	}
+
+	method prender() {
+		game.onTick(intervalo, "Parpadear", {self.parpadear()})
+	}
+
+	method parpadear() {
+		estadoLuz = estadoLuz.parpadeo()
+		estadoLuz.activar()
+	}
+
+	method schedulerFinal() {
+		game.schedule(10000, {self.apagar()})
+		//game.removeTickEvent("Parpadeo")
+		//config.configurarEscenario()    //quita el parpadeo y ya aparecería el escenario a oscuras
+	}
+
+	method apagar() {
+		game.removeTickEvent("Parpadear")
+		game.allVisuals().forEach({cosa => cosa.efectoPorLuzApagada()})
+	}
+}
+
+object prendido {
+	method parpadeo() {
+		return apagado
+	}
+
+	method activar() {
+		game.boardGround("fondoGris1.jpg")
+		//game.removeVisual(oscuridad)
+		game.allVisuals().forEach({cosa => cosa.efectoPorLuzPrendida()})
+	}
+}
+
+object apagado {
+	method parpadeo() {
+		return prendido
+	}
+
+	method activar() {
+		game.boardGround("fondoOscuro.jpg")
+		//game.addVisual(oscuridad)
+		game.allVisuals().forEach({cosa => cosa.efectoPorLuzApagada()})
+	}
+}
+
+//object oscuridad{
+//	const property position = game.at(0,0)
+//	const property image = "fondoOscuro.jpg"
+//}
+
 program Juego {
-	config.configurarEscenario()
+	inicio.configurarEscenario()
+	//config.configurarEscenario()
 
 	game.addVisual(puerta)
 
 	const coso1 = new CosaUObstaculo(position = game.at(6,7))
 	const coso2 = new CosaUObstaculo(position = game.at(4,9))
 	const coso3 = new CosaUObstaculo(position = game.at(3,3))
+
+	//game.addVisual(coso1)
+	//game.addVisual(coso2)
+	//game.addVisual(coso3)
+
 	const cosasDelMapa = [coso1, coso2, coso3]
 	cosasDelMapa.forEach({ cosa => game.addVisual(cosa) })
 
@@ -35,8 +111,13 @@ program Juego {
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
-	keyboard.f().onPressDo({if(personaje.tieneLinternaEncendida()) { personaje.apagarLinterna() } else { personaje.encenderLinterna() }})
+
+	keyboard.l().onPressDo({if(personaje.tieneLinternaEncendida()) { personaje.apagarLinterna() } else { personaje.encenderLinterna() }})
 	keyboard.e().onPressDo({personaje.interactuar(cosasDelMapa, puerta)})
+
+	// COLISIONES
 	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })
+
+
 	game.start()
 }

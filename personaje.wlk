@@ -79,4 +79,12 @@ object personaje {
       self.agarrarCosasVisibles(cosas)
     }
   }
+
+  method efectoPorLuzApagada() {
+    
+  }
+
+  method efectoPorLuzPrendida() {
+    
+  }
 }

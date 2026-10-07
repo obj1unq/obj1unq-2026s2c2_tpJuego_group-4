@@ -29,4 +29,12 @@ object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
             self.error("No tenemos todas las cosas para abrir la puerta.")
         }
     }
+
+    method efectoPorLuzPrendida() {
+        game.addVisual(self)
+    }
+
+    method efectoPorLuzApagada() {
+        game.removeVisual(self)
+    }
 }
