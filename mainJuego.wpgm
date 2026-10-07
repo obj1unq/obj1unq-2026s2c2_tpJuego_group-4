@@ -3,6 +3,7 @@ import direcciones.*
 import personaje.*
 import puerta.*
 import cosas.*
+import bichos.*
 
 
 
@@ -31,11 +32,23 @@ program Juego {
 
 	game.addVisual(personaje)     //ojo en dónde se pone, porque al mover al pj este puede quedar debajo de otras imagenes
 	
+	const bicho1 = new Bicho(position = game.at(1,2))
+	game.addVisual(bicho1)
+	
+	const bicho2 = new Bicho(position = game.at(3,4))
+	game.addVisual(bicho2)
+	
+
+	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
+	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
 	// TECLAS
 	keyboard.w().onPressDo({personaje.mover(arriba)})
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
+
+
+	
 	keyboard.f().onPressDo({personaje.interactuarLinterna()})
 	game.start()
 }
