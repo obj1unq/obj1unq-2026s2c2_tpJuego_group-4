@@ -34,19 +34,20 @@ program Juego {
 	
 	const bicho1 = new Bicho(position = game.at(1,2))
 	game.addVisual(bicho1)
-	game.onTick(2000, "bichoCazando", { => bicho1.seguirPJ()})
+	
 	const bicho2 = new Bicho(position = game.at(3,4))
 	game.addVisual(bicho2)
-	game.onTick(3000, "bichoCazando", { => bicho2.seguirPJ()})
+	
 
+	//const tick = game.tick(3000, bicho1.seguirPJ(), true)
+	
 	// TECLAS
 	keyboard.w().onPressDo({personaje.mover(arriba)})
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
 
-	bicho1.start()
-	bicho2.start()
 
+	//bicho1.start()
 	game.start()
 }

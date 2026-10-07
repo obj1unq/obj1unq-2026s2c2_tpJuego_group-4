@@ -12,8 +12,8 @@ class Bicho {
 
     method seguirPJ(){
 
-        const x = self.calcularNuevaX(personaje.position.x(), position.x())
-        const y = self.calcularNuevaY(personaje.position.y(), position.y())
+        const x = self.calcularNuevaX(personaje.position().x(), position.x())
+        const y = self.calcularNuevaY(personaje.position().y(), position.y())
 
         position = game.at(x,y)
     }
