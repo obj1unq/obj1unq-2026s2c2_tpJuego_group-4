@@ -36,6 +36,6 @@ program Juego {
 	keyboard.a().onPressDo({personaje.mover(izquierda)})
 	keyboard.s().onPressDo({personaje.mover(abajo)})
 	keyboard.d().onPressDo({personaje.mover(derecha)})
-
+	keyboard.f().onPressDo({personaje.interactuarLinterna()})
 	game.start()
 }

@@ -12,4 +12,14 @@ object personaje {
     const nuevaPosicion = dir.siguiente(position)
     position = nuevaPosicion
   }
+
+  method interactuarLinterna() {
+   if(!self.tieneLinternaEncendida()) {image = "PJconLinterna.png"} else {image = "PJnormal.png"}
+  }
+
+  method tieneLinternaEncendida(){
+    return image == "PJconLinterna.png"
+  } 
+
+  
 }
