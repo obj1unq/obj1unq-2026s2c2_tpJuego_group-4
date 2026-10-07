@@ -28,7 +28,7 @@ object inicio{
 		game.title("Escenario inicial")
 		game.height(20)
 		game.width(20)
-		game.boardGround("fondoGris1.jpg")
+		game.boardGround("fondoGris.jpg")
 		self.scheculerInicial()
 		self.schedulerFinal()
 	}
@@ -39,6 +39,7 @@ object inicio{
 
 	method prender() {
 		game.onTick(intervalo, "Parpadear", {self.parpadear()})
+											//game.allVisuals().forEach({cosa => cosa.efectoPorLuzPrendida()})})
 	}
 
 	method parpadear() {
@@ -64,7 +65,7 @@ object prendido {
 	}
 
 	method activar() {
-		game.boardGround("fondoGris1.jpg")
+		game.boardGround("fondoGris.jpg")
 		//game.removeVisual(oscuridad)
 		game.allVisuals().forEach({cosa => cosa.efectoPorLuzPrendida()})
 	}
@@ -96,10 +97,6 @@ program Juego {
 	const coso1 = new CosaUObstaculo(position = game.at(6,7))
 	const coso2 = new CosaUObstaculo(position = game.at(4,9))
 	const coso3 = new CosaUObstaculo(position = game.at(3,3))
-
-	//game.addVisual(coso1)
-	//game.addVisual(coso2)
-	//game.addVisual(coso3)
 
 	const cosasDelMapa = [coso1, coso2, coso3]
 	cosasDelMapa.forEach({ cosa => game.addVisual(cosa) })

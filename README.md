@@ -34,6 +34,7 @@
     -Sonidos para la luz parpadeando
     -Sonidos de bichos cuando se apague la luz
     -Inventario con diferentes assets cuando agarre cosas
+    - que un personaje aparece en X posición viendo visualmente todo (las posiciones de las cosas, la puerta, etc) y que después de unos segundos la luz empieza a parpadear hasta apagarse. El problema es que todo tiene un comportamiento cuando la luz se apaga y se prende
     -
 
 ## Otros

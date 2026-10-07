@@ -5,7 +5,7 @@ import personaje.*
 class CosaUObstaculo{
     var property position = game.center()
     var image = "coso.jpg"
-    var recolectada = false
+    //var recolectada = false
 
     // TO DO: cambiar todo esto de las imágenes
     // Devuelve la imagen del objeto si es visible; de lo contrario, muestra el fondo gris.
@@ -16,17 +16,18 @@ class CosaUObstaculo{
     //    return "fondoGris1.jpg"    // para inmersión, cambiar la imagen de original a después de buscar la cosa (cosa=montón de chatarra/basura, cajas o muebles)
     //}
 
-    method cambiarImagen() {
-        image = "cosoDespuésDeBusqueda.jpg"    //cada tipo de 'coso' cambia su imagen dependiendo de qué es
+    method cambiarImagenDespuesDeBusqueda() {
+        image = "cosoDspDeBusqueda.jpg"    //cada tipo de 'coso' cambia su imagen dependiendo de qué es
     }
 
     // Indica si el objeto ya fue recogido.
-    method estaRecolectada() = recolectada
+    //method estaRecolectada() = recolectada
 
     // Marca el objeto como recogido y lo quita del mapa.
     method recolectar() {
-        recolectada = true
-        game.removeVisual(self)
+        //recolectada = true
+        //game.removeVisual(self)
+        self.cambiarImagenDespuesDeBusqueda()
     }
 
     method efectoPorLuzPrendida() {
@@ -37,3 +38,9 @@ class CosaUObstaculo{
         game.removeVisual(self)
     }
 }
+
+
+// variantes para heredar el comportamiento de la clase de arriba (lo único que cambia es la imagen)
+
+
+
