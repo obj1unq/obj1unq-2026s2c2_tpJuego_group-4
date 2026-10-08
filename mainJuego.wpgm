@@ -136,26 +136,35 @@ program Juego {
 	game.addVisual(puerta)
 	inicio.registrarVisual(puerta)
 
-	const coso1 = new Monticulo(position = game.at(6,7))
-	const coso2 = new Monticulo(position = game.at(4,9))
-	const coso3 = new Monticulo(position = game.at(3,3))
+	const monticulo1 = new Monticulo(position = game.at(6,15))
+	const monticulo2 = new Monticulo(position = game.at(17,9))
+	const monticulo3 = new Monticulo(position = game.at(7,11))
 
-	const cosasDelMapa = [coso1, coso2, coso3]
-	cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
-									inicio.registrarVisual(cosa)})
+	game.addVisual(monticulo1)
+	game.addVisual(monticulo2)
+	game.addVisual(monticulo3)
+
+	inicio.registrarVisual(monticulo1)
+	inicio.registrarVisual(monticulo2)
+	inicio.registrarVisual(monticulo3)
+
+	const cosasDelMapa = [monticulo1, monticulo2, monticulo3]
+	//cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
+									//inicio.registrarVisual(cosa)})
 
 	game.addVisual(personaje)
 	inicio.registrarVisual(personaje)
 	
-	const bicho1 = new Bicho(position = game.at(1,2))
-	game.addVisual(bicho1)
-	
-	const bicho2 = new Bicho(position = game.at(3,4))
-	game.addVisual(bicho2)
+	//const bicho1 = new Bicho(position = game.at(1,2))            desactivé los bichos por ahora, funcionan bien
+	//game.addVisual(bicho1)
+	//
+	//const bicho2 = new Bicho(position = game.at(3,4))
+	//game.addVisual(bicho2)
 	
 
-	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
-	 game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
+	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
+	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
+	
 	// TECLAS
 	keyboard.w().onPressDo({inicio.moverPersonaje(arriba)})
 	keyboard.a().onPressDo({inicio.moverPersonaje(izquierda)})
@@ -172,6 +181,6 @@ program Juego {
 
 
 	
-	keyboard.f().onPressDo({personaje.interactuarLinterna()})
+	//keyboard.f().onPressDo({personaje.interactuarLinterna()})
 	game.start()
 }

@@ -3,7 +3,7 @@ import personaje.*
 
 
 object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
-    var property position = game.at(9, 4)
+    var property position = game.at(19, 4)
 
 
     // Muestra la puerta solo cuando el personaje tiene la linterna encendida y está cerca.
