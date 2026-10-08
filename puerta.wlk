@@ -5,12 +5,10 @@ import personaje.*
 object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
     var property position = game.at(9, 4)
 
+
     // Muestra la puerta solo cuando el personaje tiene la linterna encendida y está cerca.
     method image() {
-        if (personaje.tieneLinternaEncendida() and personaje.estaCerca(position)) {
-            return "puerta.jpg"
-        }
-        return "fondoGris1.jpg"
+        return "puerta.jpg"
     }
 
     // Abre la puerta si la mochila contiene todas las cosas del nivel.
@@ -31,10 +29,18 @@ object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
     }
 
     method efectoPorLuzPrendida() {
-        game.addVisual(self)
+        if (not game.allVisuals().contains(self)) {
+            game.addVisual(self)
+        }
     }
 
     method efectoPorLuzApagada() {
-        game.removeVisual(self)
+        if (personaje.tieneLinternaEncendida() and personaje.estaCerca(position)) {
+            if (not game.allVisuals().contains(self)) {
+                game.addVisual(self)
+            }
+        } else if (game.allVisuals().contains(self)) {
+            game.removeVisual(self)
+        }
     }
 }

@@ -18,23 +18,32 @@ object config {      //evaluar si queda o no
 
 
 
-object inicio{
+object inicio{			// el que te deja a oscuras al inicio
 	const intervalo = 1000
 	var estadoLuz = prendido
+	const visuales = []
+/*
+tema con los parpadeos y los visuales..tener una lista sirve como un registro para todas las visuales de la 'sala', esten visibles o no
+y al usar game.removeVisual(self) al apagarse la luz (que era como estaba antes) en el sig tick no se le puede volver a invocar, y usando una lista/registro de
+las visuales permite volver a invocar todas las visuales, tal y cómo estaban previamente, cuando se prende la luz
+*/
 
 
 
-	method configurarEscenario() {        // el que te deja a oscuras al inicio
+	method configurarEscenario() {
 		game.title("Escenario inicial")
 		game.height(20)
 		game.width(20)
 		game.boardGround("fondoGris.jpg")
-		self.scheculerInicial()
-		self.schedulerFinal()
 	}
 
-	method scheculerInicial() {
+	method registrarVisual(visual) {
+		visuales.add(visual)
+	}
+
+	method iniciarParpadeo() {      // ex scheculerInicial()
 		game.schedule(3000, {self.prender()})
+		game.schedule(10000, {self.apagar()})
 	}
 
 	method prender() {
@@ -47,15 +56,35 @@ object inicio{
 		estadoLuz.activar()
 	}
 
-	method schedulerFinal() {
-		game.schedule(10000, {self.apagar()})
+	method actualizarVisuales() {    // ex schedulerFinal() - delega a cada visual cuál era su comportamiento
+		estadoLuz.aplicarEfectos(visuales)
 		//game.removeTickEvent("Parpadeo")
 		//config.configurarEscenario()    //quita el parpadeo y ya aparecería el escenario a oscuras
 	}
 
+	method moverPersonaje(direccion) {
+		personaje.mover(direccion)
+		self.actualizarVisuales()
+	}
+
+	method alternarLinterna() {
+		if(personaje.tieneLinternaEncendida()) {
+			personaje.apagarLinterna()
+		} else {
+			personaje.encenderLinterna()
+		}
+		self.actualizarVisuales()
+	}
+
+	method interactuar(cosas, puerta) {
+		personaje.interactuar(cosas, puerta)
+		self.actualizarVisuales()
+	}
+
 	method apagar() {
 		game.removeTickEvent("Parpadear")
-		game.allVisuals().forEach({cosa => cosa.efectoPorLuzApagada()})
+		estadoLuz = apagado
+		estadoLuz.activar()
 	}
 }
 
@@ -67,7 +96,11 @@ object prendido {
 	method activar() {
 		game.boardGround("fondoGris.jpg")
 		//game.removeVisual(oscuridad)
-		game.allVisuals().forEach({cosa => cosa.efectoPorLuzPrendida()})
+		inicio.actualizarVisuales()
+	}
+
+	method aplicarEfectos(visuales) {
+		visuales.forEach({visual => visual.efectoPorLuzPrendida()})
 	}
 }
 
@@ -79,7 +112,11 @@ object apagado {
 	method activar() {
 		game.boardGround("fondoOscuro.jpg")
 		//game.addVisual(oscuridad)
-		game.allVisuals().forEach({cosa => cosa.efectoPorLuzApagada()})
+		inicio.actualizarVisuales()
+	}
+
+	method aplicarEfectos(visuales) {
+		visuales.forEach({visual => visual.efectoPorLuzApagada()})
 	}
 }
 
@@ -88,33 +125,40 @@ object apagado {
 //	const property image = "fondoOscuro.jpg"
 //}
 
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PROGRAM DEL JUEGO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 program Juego {
 	inicio.configurarEscenario()
 	//config.configurarEscenario()
 
 	game.addVisual(puerta)
+	inicio.registrarVisual(puerta)
 
-	const coso1 = new CosaUObstaculo(position = game.at(6,7))
-	const coso2 = new CosaUObstaculo(position = game.at(4,9))
-	const coso3 = new CosaUObstaculo(position = game.at(3,3))
+	const coso1 = new Monticulo(position = game.at(6,7))
+	const coso2 = new Monticulo(position = game.at(4,9))
+	const coso3 = new Monticulo(position = game.at(3,3))
 
 	const cosasDelMapa = [coso1, coso2, coso3]
-	cosasDelMapa.forEach({ cosa => game.addVisual(cosa) })
+	cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
+									inicio.registrarVisual(cosa)})
 
-	game.addVisual(personaje)     //ojo en dónde se pone, porque al mover al pj este puede quedar debajo de otras imagenes
+	game.addVisual(personaje)
+	inicio.registrarVisual(personaje)
 	
 	// TECLAS
-	keyboard.w().onPressDo({personaje.mover(arriba)})
-	keyboard.a().onPressDo({personaje.mover(izquierda)})
-	keyboard.s().onPressDo({personaje.mover(abajo)})
-	keyboard.d().onPressDo({personaje.mover(derecha)})
+	keyboard.w().onPressDo({inicio.moverPersonaje(arriba)})
+	keyboard.a().onPressDo({inicio.moverPersonaje(izquierda)})
+	keyboard.s().onPressDo({inicio.moverPersonaje(abajo)})
+	keyboard.d().onPressDo({inicio.moverPersonaje(derecha)})
 
-	keyboard.l().onPressDo({if(personaje.tieneLinternaEncendida()) { personaje.apagarLinterna() } else { personaje.encenderLinterna() }})
-	keyboard.e().onPressDo({personaje.interactuar(cosasDelMapa, puerta)})
+	keyboard.l().onPressDo({inicio.alternarLinterna()})
+	keyboard.e().onPressDo({inicio.interactuar(cosasDelMapa, puerta)})
 
 	// COLISIONES
 	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })
 
+	inicio.iniciarParpadeo()
 
 	game.start()
 }

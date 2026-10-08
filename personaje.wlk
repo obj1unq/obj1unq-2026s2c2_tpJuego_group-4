@@ -9,6 +9,7 @@ object personaje {
   const mochila = []
   var elementoEnColision = null
 
+
   // Mueve al personaje en la dirección indicada y reinicia la última colisión.
   method mover(dir) {
     const nuevaPosicion = dir.siguiente(position)
@@ -81,10 +82,18 @@ object personaje {
   }
 
   method efectoPorLuzApagada() {
-    
+    if (self.tieneLinternaEncendida()) {
+      if (not game.allVisuals().contains(self)) {
+        game.addVisual(self)
+      }
+    } else if (game.allVisuals().contains(self)) {
+      game.removeVisual(self)
+    }
   }
 
   method efectoPorLuzPrendida() {
-    
+    if (not game.allVisuals().contains(self)) {
+      game.addVisual(self)
+    }
   }
 }

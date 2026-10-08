@@ -2,7 +2,7 @@ import wollok.game.*
 import personaje.*
 
 
-class CosaUObstaculo{
+class Monticulo{    // ex CosaUObstaculo
     var property position = game.center()
     var image = "coso.jpg"
     //var recolectada = false
@@ -31,16 +31,22 @@ class CosaUObstaculo{
     }
 
     method efectoPorLuzPrendida() {
-        game.addVisual(self)
+        if (not game.allVisuals().contains(self)) {
+            game.addVisual(self)
+        }
     }
 
     method efectoPorLuzApagada() {
-        game.removeVisual(self)
+        if (personaje.tieneLinternaEncendida() and personaje.estaCerca(position)) {
+            if (not game.allVisuals().contains(self)) {
+                game.addVisual(self)
+            }
+        } else if (game.allVisuals().contains(self)) {
+            game.removeVisual(self)
+        }
     }
 }
 
 
 // variantes para heredar el comportamiento de la clase de arriba (lo único que cambia es la imagen)
-
-
 
