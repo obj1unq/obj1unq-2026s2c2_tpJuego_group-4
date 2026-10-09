@@ -1,20 +1,86 @@
 import wollok.game.*
+import direcciones.*
+import personaje.*
+import puerta.*
+import monticulo.*
+import bichos.*
+import luz.*
 
-import juego.pepita
 
-object config {
 
+
+object config {      //evaluar si queda o no
 	method configurarEscenario() {
-		game.title("Pepita")
-		game.height(10)
-		game.width(10)
+		game.title("EscapAlien")
+		game.height(20)
+		game.width(20)
+		//game.boardGround("fondoOscuro.jpg")
 	}
 }
-program PepitaGame {
 
-	config.configurarEscenario()
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PROGRAM DEL JUEGO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+program Juego {
+	inicio.configurarEscenario()
+	//config.configurarEscenario()
+
+	game.addVisual(puerta)
+	game.addVisual(panel)
+	inicio.registrarVisual(puerta)
+	inicio.registrarVisual(panel)
+
+	const monticulo1 = new Monticulo(position = game.at(6,15))
+	const monticulo2 = new Monticulo(position = game.at(17,9), tieneBarra = true)   // para probar si abre la puerta, si el pj lo agarra y etc
+	const monticulo3 = new Monticulo(position = game.at(7,11))
+
+	monticulosEnSala.registrar(monticulo1)
+	monticulosEnSala.registrar(monticulo2)
+	monticulosEnSala.registrar(monticulo3)
+
+	game.addVisual(monticulo1)
+	game.addVisual(monticulo2)
+	game.addVisual(monticulo3)
+
+	inicio.registrarVisual(monticulo1)
+	inicio.registrarVisual(monticulo2)
+	inicio.registrarVisual(monticulo3)
+
+	const cosasDelMapa = [monticulo1, monticulo2, monticulo3]
+	//cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
+									//inicio.registrarVisual(cosa)})
+
+	game.addVisual(personaje)
+	inicio.registrarVisual(personaje)
 	
-	game.addVisualCharacter(pepita)
+	//const bicho1 = new Bicho(position = game.at(1,2))            desactivé los bichos por ahora, funcionan bien
+	//game.addVisual(bicho1)
+	//
+	//const bicho2 = new Bicho(position = game.at(3,4))
+	//game.addVisual(bicho2)
+	
 
+	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
+	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
+	
+	// TECLAS
+	keyboard.w().onPressDo({inicio.moverPersonaje(arriba)})
+	keyboard.a().onPressDo({inicio.moverPersonaje(izquierda)})
+	keyboard.s().onPressDo({inicio.moverPersonaje(abajo)})
+	keyboard.d().onPressDo({inicio.moverPersonaje(derecha)})
+
+	keyboard.l().onPressDo({inicio.alternarLinterna()})
+	keyboard.p().onPressDo({personaje.abrirPuerta()})
+	keyboard.b().onPressDo({personaje.buscarBarra()})
+	//keyboard.e().onPressDo({inicio.interactuar(cosasDelMapa, puerta)})   ...
+
+	// COLISIONES 
+	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })    // ???
+
+	inicio.iniciarParpadeo()
+
+
+	
+	//keyboard.f().onPressDo({personaje.interactuarLinterna()})
 	game.start()
 }

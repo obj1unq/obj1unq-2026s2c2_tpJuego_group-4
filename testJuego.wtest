@@ -1,14 +1,67 @@
-import juego.pepita
-import mainJuego.config
+import wollok.game.*
+import luz.*
+import personaje.*
+import puerta.*
+import monticulo.*
 
-describe "group of tests for pepita" {
 
+describe "apertura de puerta" {
   method initialize() {
-    config.configurarEscenario()
-  }
-  test "pepita tiene posicion e imagen" {
-    assert.equals(game.at(5,5), pepita.position())
-    assert.equals("pepita.png", pepita.image())
+    personaje.position(puerta.position())
   }
 
+  test "pasar de nivel con todas las cosas" {
+    const cosa1 = new Monticulo(position = game.at(1, 1))
+    const cosa2 = new Monticulo(position = game.at(2, 2))
+    const cosa3 = new Monticulo(position = game.at(3, 3))
+    const cosasDelNivel = [cosa1, cosa2, cosa3]
+    const mochilaCompleta = [cosa1, cosa2, cosa3]
+
+    puerta.abrir(mochilaCompleta, cosasDelNivel)
+
+    assert.equals(game.at(0, 3), personaje.position())
+  }
+
+  test "no abrir la puerta con solo dos cosas" {
+    const cosa1 = new Monticulo(position = game.at(1, 1))
+    const cosa2 = new Monticulo(position = game.at(2, 2))
+    const cosa3 = new Monticulo(position = game.at(3, 3))
+    const cosasDelNivel = [cosa1, cosa2, cosa3]
+    const mochilaIncompleta = [cosa1, cosa2]
+
+    assert.throwsExceptionWithMessage(
+      "No tenemos todas las cosas para abrir la puerta.",
+      { => puerta.abrir(mochilaIncompleta, cosasDelNivel) }
+    )
+    assert.equals(puerta.position(), personaje.position())
+  }
+
+  test "detectar monticulo cercano en diagonal y junto al borde" {
+    const monticulo = new Monticulo(position = game.at(0, 0))
+    monticulosEnSala.registrar(monticulo)
+    game.addVisual(monticulo)
+
+    personaje.position(game.at(1, 1))
+    assert.equals(true, personaje.hayMonticuloCerca())
+
+    personaje.position(game.at(0, 1))
+    assert.equals(true, personaje.hayMonticuloCerca())
+
+    personaje.position(game.at(2, 2))
+    assert.equals(false, personaje.hayMonticuloCerca())
+
+    game.removeVisual(monticulo)
+    monticulosEnSala.quitar(monticulo)
+  }
+
+  test "efecto parpadeo" {
+    inicio.apagar()
+    assert.equals("fondoOscuro.jpg", inicio.fondo())
+
+    inicio.parpadear()
+    assert.equals("fondoGris.jpg", inicio.fondo())
+
+    inicio.parpadear()
+    assert.equals("fondoOscuro.jpg", inicio.fondo())
+  }
 }
