@@ -2,8 +2,9 @@ import wollok.game.*
 import direcciones.*
 import personaje.*
 import puerta.*
-import cosas.*
+import monticulo.*
 import bichos.*
+import luz.*
 
 
 
@@ -19,126 +20,23 @@ object config {      //evaluar si queda o no
 
 
 
-object inicio{			// el que te deja a oscuras al inicio
-	const intervalo = 1000
-	var estadoLuz = prendido
-	const visuales = []
-/*
-tema con los parpadeos y los visuales..tener una lista sirve como un registro para todas las visuales de la 'sala', esten visibles o no
-y al usar game.removeVisual(self) al apagarse la luz (que era como estaba antes) en el sig tick no se le puede volver a invocar, y usando una lista/registro de
-las visuales permite volver a invocar todas las visuales, tal y cómo estaban previamente, cuando se prende la luz
-*/
-
-
-
-	method configurarEscenario() {
-		game.title("Escenario inicial")
-		game.height(20)
-		game.width(20)
-		game.boardGround("fondoGris.jpg")
-	}
-
-	method registrarVisual(visual) {
-		visuales.add(visual)
-	}
-
-	method iniciarParpadeo() {      // ex scheculerInicial()
-		game.schedule(3000, {self.prender()})
-		game.schedule(10000, {self.apagar()})
-	}
-
-	method prender() {
-		game.onTick(intervalo, "Parpadear", {self.parpadear()})
-											//game.allVisuals().forEach({cosa => cosa.efectoPorLuzPrendida()})})
-	}
-
-	method parpadear() {
-		estadoLuz = estadoLuz.parpadeo()
-		estadoLuz.activar()
-	}
-
-	method actualizarVisuales() {    // ex schedulerFinal() - delega a cada visual cuál era su comportamiento
-		estadoLuz.aplicarEfectos(visuales)
-		//game.removeTickEvent("Parpadeo")
-		//config.configurarEscenario()    //quita el parpadeo y ya aparecería el escenario a oscuras
-	}
-
-	method moverPersonaje(direccion) {
-		personaje.mover(direccion)
-		self.actualizarVisuales()
-	}
-
-	method alternarLinterna() {
-		if(personaje.tieneLinternaEncendida()) {
-			personaje.apagarLinterna()
-		} else {
-			personaje.encenderLinterna()
-		}
-		self.actualizarVisuales()
-	}
-
-	method interactuar(cosas, puerta) {
-		personaje.interactuar(cosas, puerta)
-		self.actualizarVisuales()
-	}
-
-	method apagar() {
-		game.removeTickEvent("Parpadear")
-		estadoLuz = apagado
-		estadoLuz.activar()
-	}
-}
-
-object prendido {
-	method parpadeo() {
-		return apagado
-	}
-
-	method activar() {
-		game.boardGround("fondoGris.jpg")
-		//game.removeVisual(oscuridad)
-		inicio.actualizarVisuales()
-	}
-
-	method aplicarEfectos(visuales) {
-		visuales.forEach({visual => visual.efectoPorLuzPrendida()})
-	}
-}
-
-object apagado {
-	method parpadeo() {
-		return prendido
-	}
-
-	method activar() {
-		game.boardGround("fondoOscuro.jpg")
-		//game.addVisual(oscuridad)
-		inicio.actualizarVisuales()
-	}
-
-	method aplicarEfectos(visuales) {
-		visuales.forEach({visual => visual.efectoPorLuzApagada()})
-	}
-}
-
-//object oscuridad{
-//	const property position = game.at(0,0)
-//	const property image = "fondoOscuro.jpg"
-//}
-
-
-
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PROGRAM DEL JUEGO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 program Juego {
 	inicio.configurarEscenario()
 	//config.configurarEscenario()
 
 	game.addVisual(puerta)
+	game.addVisual(panel)
 	inicio.registrarVisual(puerta)
+	inicio.registrarVisual(panel)
 
 	const monticulo1 = new Monticulo(position = game.at(6,15))
-	const monticulo2 = new Monticulo(position = game.at(17,9))
+	const monticulo2 = new Monticulo(position = game.at(17,9), tieneBarra = true)   // para probar si abre la puerta, si el pj lo agarra y etc
 	const monticulo3 = new Monticulo(position = game.at(7,11))
+
+	monticulosEnSala.registrar(monticulo1)
+	monticulosEnSala.registrar(monticulo2)
+	monticulosEnSala.registrar(monticulo3)
 
 	game.addVisual(monticulo1)
 	game.addVisual(monticulo2)
@@ -172,10 +70,12 @@ program Juego {
 	keyboard.d().onPressDo({inicio.moverPersonaje(derecha)})
 
 	keyboard.l().onPressDo({inicio.alternarLinterna()})
-	keyboard.e().onPressDo({inicio.interactuar(cosasDelMapa, puerta)})
+	keyboard.p().onPressDo({personaje.abrirPuerta()})
+	keyboard.b().onPressDo({personaje.buscarBarra()})
+	//keyboard.e().onPressDo({inicio.interactuar(cosasDelMapa, puerta)})   ...
 
-	// COLISIONES
-	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })
+	// COLISIONES 
+	game.onCollideDo(personaje, { elemento => personaje.registrarColision(elemento) })    // ???
 
 	inicio.iniciarParpadeo()
 

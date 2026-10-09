@@ -1,5 +1,8 @@
 import wollok.game.*
 import direcciones.*
+import puerta.*
+import barra.*
+import monticulo.*
 
 
 
@@ -13,9 +16,20 @@ object personaje {
   // Mueve al personaje en la dirección indicada y reinicia la última colisión.
   method mover(dir) {
     const nuevaPosicion = dir.siguiente(position)
+    self.validarMovimientoHacia(nuevaPosicion)
     elementoEnColision = null
     position = nuevaPosicion
   }
+
+  method validarMovimientoHacia(dir){
+    if(self.sePuedeMoverHacia(dir)){
+      self.error("No es posible moverme hacia el "+dir+".")
+    }
+  }
+
+  method sePuedeMoverHacia(direccion) = !self.hayObstaculoHacia(direccion)
+
+  method hayObstaculoHacia(dir) = game.getObjectsIn(dir).isEmpty()
 
   // Guarda el elemento con el que acaba de colisionar el personaje.
   method registrarColision(elemento) {
@@ -45,41 +59,83 @@ object personaje {
   }
 
   // Guarda una cosa cercana y visible en la mochila, o informa si no puede recogerla.
-  method agarrarCosa(cosa) {
-    if (not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())) {
-      mochila.add(cosa)
-      cosa.recolectar()
-    } else {
-      self.error("No se puede agarrar la cosa: debe estar cerca, visible y todavía en el mapa.")
+  method buscarBarra() {
+    self.validarBusquedaYRecoleccion()
+    mochila.add(Barra)
+    //cosa.recolectar()
+}
+
+  method validarBusquedaYRecoleccion(){
+    if (self.hayBarraCercana()) {
+      self.error("No hay nada para agarrar acá.")
     }
   }
+
+  method hayBarraCercana() = self.hayMonticuloCerca() && Monticulo.tieneBarra()
+
+  method hayMonticuloCerca() = monticulosEnSala.todos().any({ monticulo =>
+    monticulo.position() != position and
+    self.estaCerca(monticulo.position())
+  })
+
+  method puedeAgarrar(cosa) = not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())
+
+  method abrirPuerta() {
+    self.validarAbrirPuerta()
+    puerta.efectoAlSerAbierta()
+    // juego.cambiarEscenario()   // el que eliminará todo de la sala 1 y empezará la sala 2
+    // -----  "juego", por ahora esa referencia porque no sé en dónde ubicar la lógica de cambiar de sala..hablarlo
+  }
+
+  method validarAbrirPuerta() {    // 2 validaciones porque los mensajes que dice el pj son diferentes
+    self.validarPosicionDeLaPuerta()
+    self.validarBarrasSuficientesParaAbrirPuerta()
+  }
+
+  method validarPosicionDeLaPuerta() {
+    if(self.hayPuertaCerca()){
+      self.error("No hay puerta cercana para abrir.")
+    }
+  }
+
+  method hayPuertaCerca() = self.estaFrenteAlPanel()
+
+  method estaFrenteAlPanel() = self.position() == game.at(18,5)   //exactamente delante del panel
+
+  method validarBarrasSuficientesParaAbrirPuerta() {
+    if(self.haySuficientesBarrasParaAbrirLaPuerta()){
+      self.error("No puedo abrir la puerta, no cuento con suficientes barras.")
+    }
+  }
+
+  method haySuficientesBarrasParaAbrirLaPuerta() = mochila.ocurrencesOf(Barra) == 3  // solo hay 3 barras en toda la sala, por lo que buscar un resultado diferente que 3 sería ilógico..
 
   // Recoge una cosa visible cercana o informa si no hay ninguna disponible.
-  method agarrarCosasVisibles(cosas) {
-    var yaAgarroUna = false
-    cosas.forEach({ cosa =>
-      if (not yaAgarroUna and not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())) {
-        self.agarrarCosa(cosa)
-        yaAgarroUna = true
-      }
-    })
-    if (not yaAgarroUna) {
-      self.error("No se puede agarrar la cosa: no hay ninguna cosa visible cerca para agarrar.")
-    }
-  }
+//  method agarrarCosasVisibles(cosas) {
+//    var yaAgarroUna = false
+//    cosas.forEach({ cosa =>
+//      if (not yaAgarroUna and not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())) {
+//        self.agarrarCosa(cosa)
+//        yaAgarroUna = true
+//      }
+//    })
+//    if (not yaAgarroUna) {
+//      self.error("No se puede agarrar la cosa: "+cosas+" ya que no está cerca para agarrarla.")
+//    }
+//  }
 
   // Abre la puerta o recoge el objeto con el que colisionó; si no hubo colisión, busca algo cercano.
-  method interactuar(cosas, puerta) {
-    if (elementoEnColision == puerta) {
-      puerta.abrir(mochila, cosas)
-      elementoEnColision = null
-    } else if (cosas.contains(elementoEnColision)) {
-      self.agarrarCosa(elementoEnColision)
-      elementoEnColision = null
-    } else {
-      self.agarrarCosasVisibles(cosas)
-    }
-  }
+//  method interactuar(cosas, puerta) {
+//    if (elementoEnColision == puerta) {
+//      puerta.abrir(mochila, cosas)
+//      elementoEnColision = null
+//    } else if (cosas.contains(elementoEnColision)) {
+//      self.agarrarCosa(elementoEnColision)
+//      elementoEnColision = null
+//    } else {
+//      self.agarrarCosasVisibles(cosas)
+//    }
+//  }
 
   method efectoPorLuzApagada() {
     if (self.tieneLinternaEncendida()) {

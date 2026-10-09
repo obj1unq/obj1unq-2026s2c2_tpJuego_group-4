@@ -1,10 +1,24 @@
 import wollok.game.*
 import personaje.*
 
+object monticulosEnSala {
+    const registrados = []
+
+    method registrar(monticulo) {
+        registrados.add(monticulo)
+    }
+
+    method quitar(monticulo) {
+        registrados.remove(monticulo)
+    }
+
+    method todos() = registrados
+}
 
 class Monticulo{    // ex CosaUObstaculo
     var property position = game.center()
     var image = "coso.jpg"
+    var property tieneBarra = false
     //var recolectada = false
 
     // TO DO: cambiar todo esto de las imágenes
@@ -49,4 +63,3 @@ class Monticulo{    // ex CosaUObstaculo
 
 
 // variantes para heredar el comportamiento de la clase de arriba (lo único que cambia es la imagen)
-

@@ -1,7 +1,8 @@
 import wollok.game.*
+import luz.*
 import personaje.*
 import puerta.*
-import cosas.*
+import monticulo.*
 
 
 describe "apertura de puerta" {
@@ -33,5 +34,34 @@ describe "apertura de puerta" {
       { => puerta.abrir(mochilaIncompleta, cosasDelNivel) }
     )
     assert.equals(puerta.position(), personaje.position())
+  }
+
+  test "detectar monticulo cercano en diagonal y junto al borde" {
+    const monticulo = new Monticulo(position = game.at(0, 0))
+    monticulosEnSala.registrar(monticulo)
+    game.addVisual(monticulo)
+
+    personaje.position(game.at(1, 1))
+    assert.equals(true, personaje.hayMonticuloCerca())
+
+    personaje.position(game.at(0, 1))
+    assert.equals(true, personaje.hayMonticuloCerca())
+
+    personaje.position(game.at(2, 2))
+    assert.equals(false, personaje.hayMonticuloCerca())
+
+    game.removeVisual(monticulo)
+    monticulosEnSala.quitar(monticulo)
+  }
+
+  test "efecto parpadeo" {
+    inicio.apagar()
+    assert.equals("fondoOscuro.jpg", inicio.fondo())
+
+    inicio.parpadear()
+    assert.equals("fondoGris.jpg", inicio.fondo())
+
+    inicio.parpadear()
+    assert.equals("fondoOscuro.jpg", inicio.fondo())
   }
 }
