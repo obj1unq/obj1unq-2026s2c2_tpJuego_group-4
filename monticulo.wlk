@@ -41,6 +41,9 @@ class Monticulo{    // ex CosaUObstaculo
     method recolectar() {
         //recolectada = true
         //game.removeVisual(self)
+        //if (no esta recolectada){
+        //    recolectar
+        //} else{self.error("Ya busqué acá...")}
         self.cambiarImagenDespuesDeBusqueda()
     }
 
