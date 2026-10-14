@@ -1,5 +1,8 @@
 import wollok.game.*
 import personaje.*
+import pantallas.*
+
+
 
 
 object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
@@ -57,7 +60,7 @@ object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
         //game.allVisuals().forEach({o => game.removeVisual(o)})
         game.clear()     // otra forma más brusca de limpiar todo...
         //game.addVisual(positionable)     se debería crear el objeto que corresponde al final del juego
-        game.boardGround("pantallaWin.jpg")
+        game.addVisual(pantallaGE)
     }
 }
 

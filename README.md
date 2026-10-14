@@ -35,7 +35,13 @@
     -Sonidos de bichos cuando se apague la luz
     -Inventario con diferentes assets cuando agarre cosas
     - que un personaje aparece en X posición viendo visualmente todo (las posiciones de las cosas, la puerta, etc) y que después de unos segundos la luz empieza a parpadear hasta apagarse. El problema es que todo tiene un comportamiento cuando la luz se apaga y se prende
-    -
+    -Cambiar todos los detalles de las imagenes, es decir, inventario con/sin linterna, inv con/sin linterna + barras (diferentes cant de barras)    
+    --Solucion para evitar todo el quilobo de assets? Obligar al pj (a quien juega) a que agarre la linterna, y la cant de assets con/sin linterna se reduciría :)
+    -Diferentes variantes para los monticulos con y sin barras, es decir: Monticulo sin tocar -> personaje.buscar() -> Monticulo afectado por la busqueda + barra visible -> Monticulo afectado por la busqueda - barra    
+    --Lo de arriba es mucho assets, Solucion: que el pj diga que encontró algo y ya esta, la cant de imagenes se reduciría a Monticulo sin tocar -> Monticulo afectado por busqueda (afectado es: cajon - cajon abierto,
+                                                                                    chatarra - chatarra movida,
+                                                                                    escombros - escombros movidos,
+                                                                                    etc.)
 
 ## Otros
 

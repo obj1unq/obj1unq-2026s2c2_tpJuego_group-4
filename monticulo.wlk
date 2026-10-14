@@ -1,6 +1,9 @@
 import wollok.game.*
 import personaje.*
 
+
+
+
 object monticulosEnSala {
     const registrados = []
 
@@ -62,6 +65,8 @@ class Monticulo{    // ex CosaUObstaculo
             game.removeVisual(self)
         }
     }
+
+    method esMonticuloConBarraDentro() = tieneBarra
 }
 
 

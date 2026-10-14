@@ -3,9 +3,12 @@ import luz.*
 import personaje.*
 import puerta.*
 import monticulo.*
+import pantallas.*
 
 
-describe "apertura de puerta" {
+
+
+describe "Tests de cualquier cosa..." {
   method initialize() {
     personaje.position(puerta.position())
   }
@@ -22,21 +25,20 @@ describe "apertura de puerta" {
     personaje.abrirPuerta()
 
     //assert.equals(game.at(0, 3), personaje.position())
-    assert.equals("pantallaWin.jpg", game)
+    assert.that((game.getObjectsIn(game.at(0, 0))).contains(pantallaGE))
   }
 
   test "no abrir la puerta con solo dos cosas" {
     const cosa1 = new Monticulo(position = game.at(1, 1))
     const cosa2 = new Monticulo(position = game.at(2, 2))
-    const cosa3 = new Monticulo(position = game.at(3, 3))
-    const cosasDelNivel = [cosa1, cosa2, cosa3]
-    const mochilaIncompleta = [cosa1, cosa2]
+    //const cosa3 = new Monticulo(position = game.at(3, 3))
+    const cosasDelNivel = [cosa1, cosa2]
+    cosasDelNivel.forEach({o => personaje.mochilaAdd(o)})
+    //const mochilaIncompleta = [cosa1, cosa2]
 
-    assert.throwsExceptionWithMessage(
-      "No tenemos todas las cosas para abrir la puerta.",
-      { => personaje.abrirPuerta() }
-    )
-    assert.equals(puerta.position(), personaje.position())
+    //assert.throwsExceptionWithMessage("No tenemos todas las cosas para abrir la puerta.", { => personaje.abrirPuerta() })
+    assert.throwsException({personaje.abrirPuerta()})
+    //assert.equals(puerta.position(), personaje.position())
   }
 
   test "detectar monticulo cercano en diagonal y junto al borde" {

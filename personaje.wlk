@@ -27,7 +27,9 @@ object personaje {
     }
   }
 
+  //method sePuedeMoverHacia(direccion) = (evitar moverse encima del inventario) and !self.hayObstaculoHacia(direccion)        // <--- este lógica tiene que quedar
   method sePuedeMoverHacia(direccion) = !self.hayObstaculoHacia(direccion)
+
 
   method hayObstaculoHacia(dir) = game.getObjectsIn(dir).isEmpty()
 
@@ -61,7 +63,8 @@ object personaje {
   // Guarda una cosa cercana y visible en la mochila, o informa si no puede recogerla.
   method buscarBarra() {
     self.validarBusquedaYRecoleccion()
-    mochila.add(Barra)
+    const barraX = "barra"     // cambiar esto para que no sea un string...
+    mochila.add(barraX)
     //cosa.recolectar()
 }
 
@@ -71,12 +74,13 @@ object personaje {
     }
   }
 
-  method hayBarraCercana() = self.hayMonticuloCerca() && Monticulo.tieneBarra()
+  method hayBarraCercana() = self.hayMonticuloCerca() and self.hayMonticuloConBarraCerca()
 
-  method hayMonticuloCerca() = monticulosEnSala.todos().any({ monticulo =>
-    monticulo.position() != position and
-    self.estaCerca(monticulo.position())
-  })
+  method hayMonticuloCerca() = monticulosEnSala.todos().any(
+                              { monticulo => monticulo.position() != position and self.estaCerca(monticulo.position())})
+
+  method hayMonticuloConBarraCerca() = monticulosEnSala.todos().any(
+                              { monticulo => monticulo.position() != position and monticulo.esMonticuloConBarraDentro()})
 
   method puedeAgarrar(cosa) = not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())
 
@@ -103,12 +107,12 @@ object personaje {
   method estaFrenteAlPanel() = self.position() == game.at(18,5)   //exactamente delante del panel
 
   method validarBarrasSuficientesParaAbrirPuerta() {
-    if(self.haySuficientesBarrasParaAbrirLaPuerta()){
+    if(!self.haySuficientesBarrasParaAbrirLaPuerta()){
       self.error("No puedo abrir la puerta, no cuento con suficientes barras.")
     }
   }
 
-  method haySuficientesBarrasParaAbrirLaPuerta() = mochila.ocurrencesOf(Barra) == 3  // solo hay 3 barras en toda la sala, por lo que buscar un resultado diferente que 3 sería ilógico..
+  method haySuficientesBarrasParaAbrirLaPuerta() = mochila.size() == 3  // solo hay 3 barras en toda la sala, por lo que buscar un resultado diferente que 3 sería ilógico..
 
   method ponerBarras() {
     // TO DO 
