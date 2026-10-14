@@ -15,11 +15,14 @@ describe "apertura de puerta" {
     const cosa2 = new Monticulo(position = game.at(2, 2))
     const cosa3 = new Monticulo(position = game.at(3, 3))
     const cosasDelNivel = [cosa1, cosa2, cosa3]
-    const mochilaCompleta = [cosa1, cosa2, cosa3]
+    
+    cosasDelNivel.forEach({o => personaje.mochilaAdd(o)})
+    //const mochilaCompleta = [cosa1, cosa2, cosa3]
 
-    puerta.abrir(mochilaCompleta, cosasDelNivel)
+    personaje.abrirPuerta()
 
-    assert.equals(game.at(0, 3), personaje.position())
+    //assert.equals(game.at(0, 3), personaje.position())
+    assert.equals("pantallaWin.jpg", game)
   }
 
   test "no abrir la puerta con solo dos cosas" {
@@ -31,7 +34,7 @@ describe "apertura de puerta" {
 
     assert.throwsExceptionWithMessage(
       "No tenemos todas las cosas para abrir la puerta.",
-      { => puerta.abrir(mochilaIncompleta, cosasDelNivel) }
+      { => personaje.abrirPuerta() }
     )
     assert.equals(puerta.position(), personaje.position())
   }
