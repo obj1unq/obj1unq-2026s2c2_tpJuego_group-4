@@ -12,21 +12,30 @@ object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
     }
 
     // Abre la puerta si la mochila contiene todas las cosas del nivel.
-    method abrir(mochila, cosas) {
-        var tieneTodasLasCosas = true
-        cosas.forEach({ cosa =>
-            if (not mochila.contains(cosa)) {
-                tieneTodasLasCosas = false
-            }
-        })
-        if (tieneTodasLasCosas) {
-            cosas.forEach({ cosa => game.removeVisual(cosa) })  
-            game.removeVisual(self)
-            personaje.position(game.at(0, 3))
-        } else {
-            self.error("No tenemos todas las cosas para abrir la puerta.")
-        }
-    }
+    //method abrir(mochila, cosas) {
+        //self.validarAbrirPuerta()
+        //var tieneTodasLasCosas = true
+        //cosas.forEach({ cosa =>
+        //    if (not mochila.contains(cosa)) {
+        //        tieneTodasLasCosas = false
+        //    }
+        //})
+        //if (tieneTodasLasCosas) {
+        //    cosas.forEach({ cosa => game.removeVisual(cosa) })  
+        //    game.removeVisual(self)
+        //    personaje.position(game.at(0, 3))
+        //} else {
+        //    self.error("No tenemos todas las cosas para abrir la puerta.")
+        //}
+    //}
+
+    //method validarAbrirPuerta() {
+    //    if(self.puedeAbrirse()){
+    //        self.error("No es posible abrir la puerta...")
+    //    }
+    //}
+
+    //method puedeAbrirse() = 
 
     method efectoPorLuzPrendida() {
         if (not game.allVisuals().contains(self)) {
@@ -45,7 +54,10 @@ object puerta{   //considerar pasarlo a clase en vez de que sea un objeto
     }
 
     method efectoAlSerAbierta() {
-        
+        //game.allVisuals().forEach({o => game.removeVisual(o)})
+        game.clear()     // otra forma más brusca de limpiar todo...
+        //game.addVisual(positionable)     se debería crear el objeto que corresponde al final del juego
+        game.boardGround("pantallaWin.jpg")
     }
 }
 
