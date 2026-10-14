@@ -30,25 +30,28 @@ program Juego {
 	inicio.registrarVisual(puerta)
 	inicio.registrarVisual(panel)
 
+	// crear un metodo para que te de posiciones aleatorias de entre un rango (comprobar antes de devolver que la 
+	// posicion que el lugar no este ocupado (por superposicion de mismos monticulos y por otros objetos...))
 	const monticulo1 = new Monticulo(position = game.at(6,15))
 	const monticulo2 = new Monticulo(position = game.at(17,9), tieneBarra = true)   // para probar si abre la puerta, si el pj lo agarra y etc
 	const monticulo3 = new Monticulo(position = game.at(7,11))
 
-	monticulosEnSala.registrar(monticulo1)
-	monticulosEnSala.registrar(monticulo2)
-	monticulosEnSala.registrar(monticulo3)
+	// monticulosEnSala.registrar(monticulo1)
+	// monticulosEnSala.registrar(monticulo2)
+	// monticulosEnSala.registrar(monticulo3)
 
-	game.addVisual(monticulo1)
-	game.addVisual(monticulo2)
-	game.addVisual(monticulo3)
+	// game.addVisual(monticulo1)
+	// game.addVisual(monticulo2)
+	// game.addVisual(monticulo3)
 
-	inicio.registrarVisual(monticulo1)
-	inicio.registrarVisual(monticulo2)
-	inicio.registrarVisual(monticulo3)
+	// inicio.registrarVisual(monticulo1)
+	// inicio.registrarVisual(monticulo2)
+	// inicio.registrarVisual(monticulo3)
 
 	const cosasDelMapa = [monticulo1, monticulo2, monticulo3]
-	//cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
-									//inicio.registrarVisual(cosa)})
+	cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
+									inicio.registrarVisual(cosa)
+									monticulosEnSala.registrar(cosa)})
 
 	game.addVisual(personaje)
 	inicio.registrarVisual(personaje)
@@ -70,7 +73,8 @@ program Juego {
 	keyboard.d().onPressDo({inicio.moverPersonaje(derecha)})
 
 	keyboard.l().onPressDo({inicio.alternarLinterna()})
-	keyboard.p().onPressDo({personaje.abrirPuerta()})
+	//keyboard.p().onPressDo({personaje.abrirPuerta()})
+	keyboard.p().onPressDo({personaje.ponerBarras()})
 	keyboard.b().onPressDo({personaje.buscarBarra()})
 	//keyboard.e().onPressDo({inicio.interactuar(cosasDelMapa, puerta)})   ...
 
