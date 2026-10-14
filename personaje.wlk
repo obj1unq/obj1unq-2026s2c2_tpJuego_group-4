@@ -9,7 +9,7 @@ import monticulo.*
 object personaje {
   var property position = game.at(0, 3)
   var property image = "PJnormal.png"    // después va a cambiar por otro que tenga la linterna encima
-  const mochila = []
+  const mochila = [] 
   var elementoEnColision = null
 
 
@@ -110,6 +110,10 @@ object personaje {
 
   method haySuficientesBarrasParaAbrirLaPuerta() = mochila.ocurrencesOf(Barra) == 3  // solo hay 3 barras en toda la sala, por lo que buscar un resultado diferente que 3 sería ilógico..
 
+  method ponerBarras() {
+    // TO DO 
+  }
+
   // Recoge una cosa visible cercana o informa si no hay ninguna disponible.
 //  method agarrarCosasVisibles(cosas) {
 //    var yaAgarroUna = false
@@ -151,5 +155,9 @@ object personaje {
     if (not game.allVisuals().contains(self)) {
       game.addVisual(self)
     }
+  }
+
+  method mochilaAdd(o) {     // creado solo para los tests...
+    mochila.add(o)
   }
 }
