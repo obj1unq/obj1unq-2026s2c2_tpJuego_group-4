@@ -3,7 +3,7 @@ import direcciones.*
 import puerta.*
 import barra.*
 import monticulo.*
-
+import inventario.inventario
 
 
 object personaje {
@@ -11,6 +11,10 @@ object personaje {
   var property image = "PJnormal.png"    // después va a cambiar por otro que tenga la linterna encima
   const mochila = [] 
   var elementoEnColision = null
+
+  method elementoEnMochila(posicion) {
+    return if (mochila.size() > posicion) mochila.get(posicion) else null
+  }
 
 
   // Mueve al personaje en la dirección indicada y reinicia la última colisión.

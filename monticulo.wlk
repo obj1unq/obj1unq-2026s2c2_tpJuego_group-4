@@ -20,7 +20,7 @@ object monticulosEnSala {
 
 class Monticulo{    // ex CosaUObstaculo
     var property position = game.center()
-    var image = "coso.jpg"
+    var property image = "coso.jpg"
     var property tieneBarra = false
     //var recolectada = false
 
