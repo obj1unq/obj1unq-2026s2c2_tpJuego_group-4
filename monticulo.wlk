@@ -67,6 +67,14 @@ class Monticulo{    // ex CosaUObstaculo
     }
 
     method esMonticuloConBarraDentro() = tieneBarra
+
+    method barra() {
+        self.validarBarra()
+        return new Barra(position = self.position())
+    }
+    method validarBarra() {
+        
+    }
 }
 
 
