@@ -33,9 +33,11 @@ program Juego {
 
 	// crear un metodo para que te de posiciones aleatorias de entre un rango (comprobar antes de devolver que la 
 	// posicion que el lugar no este ocupado (por superposicion de mismos monticulos y por otros objetos...))
-	const monticulo1 = new Monticulo(position = game.at(6,15))
-	const monticulo2 = new Monticulo(position = game.at(17,9), tieneBarra = true)   // para probar si abre la puerta, si el pj lo agarra y etc
-	const monticulo3 = new Monticulo(position = game.at(7,11))
+	const monticulo1 = new Monticulo(position = game.at(6,15), tieneBarra = true)
+	const monticulo2 = new Monticulo(position = game.at(17,9))
+	const monticulo3 = new Monticulo(position = game.at(7,11), tieneBarra = true)
+	const monticulo4 = new Monticulo(position = game.at(12,4))
+	const monticulo5 = new Monticulo(position = game.at(13,15), tieneBarra = true)
 
 	// monticulosEnSala.registrar(monticulo1)
 	// monticulosEnSala.registrar(monticulo2)
@@ -49,7 +51,7 @@ program Juego {
 	// inicio.registrarVisual(monticulo2)
 	// inicio.registrarVisual(monticulo3)
 
-	const cosasDelMapa = [monticulo1, monticulo2, monticulo3]
+	const cosasDelMapa = [monticulo1, monticulo2, monticulo3, monticulo4, monticulo5]
 	cosasDelMapa.forEach({ cosa => game.addVisual(cosa)
 									inicio.registrarVisual(cosa)
 									monticulosEnSala.registrar(cosa)})

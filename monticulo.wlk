@@ -1,6 +1,6 @@
 import wollok.game.*
 import personaje.*
-
+import barra.*
 
 
 
@@ -22,8 +22,9 @@ class Monticulo{    // ex CosaUObstaculo
     var property position = game.center()
     var property image = "coso.jpg"
     var property tieneBarra = false
-    //var recolectada = false
+    var property fueBuscado = false
 
+    // Marca si el montículo ya se revisó y evita volver a recoger su barra.
     // TO DO: cambiar todo esto de las imágenes
     // Devuelve la imagen del objeto si es visible; de lo contrario, muestra el fondo gris.
     //method image2() {
@@ -37,17 +38,22 @@ class Monticulo{    // ex CosaUObstaculo
         image = "cosoDspDeBusqueda.jpg"    //cada tipo de 'coso' cambia su imagen dependiendo de qué es
     }
 
-    // Indica si el objeto ya fue recogido.
-    //method estaRecolectada() = recolectada
-
-    // Marca el objeto como recogido y lo quita del mapa.
-    method recolectar() {
-        //recolectada = true
-        //game.removeVisual(self)
-        //if (no esta recolectada){
-        //    recolectar
-        //} else{self.error("Ya busqué acá...")}
+    // Revisa el montículo una vez; devuelve true si entrega una barra y false si está vacío.
+    method buscar() {
+        self.validarNoFueBuscado()
+        fueBuscado = true
         self.cambiarImagenDespuesDeBusqueda()
+        if (tieneBarra) {
+            tieneBarra = false
+            return true
+        }
+        return false
+    }
+
+    method validarNoFueBuscado() {
+        if (fueBuscado) {
+            self.error("Este montículo ya fue revisado.")
+        }
     }
 
     method efectoPorLuzPrendida() {
@@ -67,14 +73,6 @@ class Monticulo{    // ex CosaUObstaculo
     }
 
     method esMonticuloConBarraDentro() = tieneBarra
-
-    method barra() {
-        self.validarBarra()
-        return new Barra(position = self.position())
-    }
-    method validarBarra() {
-        
-    }
 }
 
 
