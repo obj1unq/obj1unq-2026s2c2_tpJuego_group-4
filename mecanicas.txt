@@ -1,0 +1,6 @@
+-cuando el personaje colisione con el obstaculo, tenga que buscar el objeto, y tiene que encontrar 3 barritas, entre los diferentes cosso con el botno B ,
+si lo encuentra la guarda en el inventario las barritas encontradas, y mostrarlas abajo. como el almacenamiento, si no las encuentra tira un emnsaje de error diciendo que no econtro nada
+
+- al tener las 3 barritas podremos abrir la puerta,
+
+- poder recargar la linterna, apretar r para que no se apague
