@@ -13,3 +13,9 @@ object pantallaBE {        // Bad Ending
     const property position = game.at(0, 0)
 }
 
+object gameOver {       
+    method activar() {
+        game.clear()
+        game.addVisual(pantallaBE)
+    }
+}

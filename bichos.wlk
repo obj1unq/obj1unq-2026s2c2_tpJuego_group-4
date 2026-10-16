@@ -1,6 +1,7 @@
 import personaje.*
 import wollok.game.*
 import direcciones.*
+import pantallas.*
 
 class Bicho {
 
@@ -16,6 +17,11 @@ class Bicho {
         const y = self.calcularNuevaY(personaje.position().y(), position.y())
 
         position = game.at(x,y)
+
+        if (self.alcanzoAlPersonaje()) {
+            gameOver.activar()
+        }
+
     }
 
     method calcularNuevaX(x1, x2){ 
@@ -32,6 +38,8 @@ class Bicho {
                  else y2 
     }
 
-    
+    method alcanzoAlPersonaje(){
+        return position == personaje.position()
+    }
 
 }

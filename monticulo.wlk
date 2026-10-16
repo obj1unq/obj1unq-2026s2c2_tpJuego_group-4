@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import barra.*
 
 
 
