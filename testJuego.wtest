@@ -4,6 +4,7 @@ import personaje.*
 import puerta.*
 import monticulo.*
 import pantallas.*
+import inventario.*
 
 
 
@@ -57,6 +58,51 @@ describe "Tests de cualquier cosa..." {
 
     game.removeVisual(monticulo)
     monticulosEnSala.quitar(monticulo)
+  }
+
+  test "buscar una barra cercana la recolecta una sola vez" {
+    const monticulo = new Monticulo(position = game.at(2, 3), tieneBarra = true)
+    personaje.position(game.at(1, 3))
+    personaje.barrasRecolectadas(0)
+    monticulosEnSala.registrar(monticulo)
+
+    personaje.buscarBarra()
+
+    assert.equals(1, personaje.barrasRecolectadas())
+    assert.equals(false, monticulo.esMonticuloConBarraDentro())
+    assert.equals(true, monticulo.fueBuscado())
+    assert.equals("inventario1.png", inventario.image())
+    assert.throwsException({personaje.buscarBarra()})
+    assert.equals(1, personaje.barrasRecolectadas())
+
+    monticulosEnSala.quitar(monticulo)
+  }
+
+  test "buscar un monticulo vacío no agrega barras y lo marca revisado" {
+    const monticulo = new Monticulo(position = game.at(2, 3))
+    personaje.position(game.at(1, 3))
+    personaje.barrasRecolectadas(0)
+    monticulosEnSala.registrar(monticulo)
+
+    assert.throwsException({personaje.buscarBarra()})
+
+    assert.equals(0, personaje.barrasRecolectadas())
+    assert.equals(true, monticulo.fueBuscado())
+    assert.equals("inventario.png", inventario.image())
+
+    monticulosEnSala.quitar(monticulo)
+  }
+
+  test "inventario representa cero a tres barras recolectadas" {
+    personaje.barrasRecolectadas(0)
+    assert.equals("inventario.png", inventario.image())
+    personaje.barrasRecolectadas(1)
+    assert.equals("inventario1.png", inventario.image())
+    personaje.barrasRecolectadas(2)
+    assert.equals("inventario2.png", inventario.image())
+    personaje.barrasRecolectadas(3)
+    assert.equals("inventario3.png", inventario.image())
+    personaje.barrasRecolectadas(0)
   }
 
   test "efecto parpadeo" {

@@ -10,7 +10,15 @@ object personaje {
   var property position = game.at(0, 3)
   var property image = "PJnormal.png"    // después va a cambiar por otro que tenga la linterna encima
   const mochila = [] 
+  var cantidadBarras = 0
   var elementoEnColision = null
+
+  // Este contador es el estado de juego; la mochila se conserva solo para pruebas anteriores.
+  method barrasRecolectadas() = cantidadBarras
+
+  method barrasRecolectadas(cantidad) {
+    cantidadBarras = cantidad
+  }
 
   method elementoEnMochila(posicion) {
     return if (mochila.size() > posicion) mochila.get(posicion) else null
@@ -64,29 +72,35 @@ object personaje {
     return estaEnRangoHorizontal and estaEnRangoVertical
   }
 
-  // Guarda una cosa cercana y visible en la mochila, o informa si no puede recogerla.
+  // Busca en el primer montículo cercano que todavía no fue revisado y suma la barra si encuentra una.
   method buscarBarra() {
-    self.validarBusquedaYRecoleccion()
-    const barraX = "barra"     // cambiar esto para que no sea un string...
-    mochila.add(barraX)
-    //cosa.recolectar()
+  const monticulo = self.monticuloCercanoSinBuscar()
+  if (monticulo == null) {
+    self.error("No hay montículos cercanos para buscar.")
+  }
+  if (monticulo.buscar()) {
+    cantidadBarras = cantidadBarras + 1
+  } else {
+    self.error("No encontré ninguna barra en este montículo.")
+  }
 }
 
-  method validarBusquedaYRecoleccion(){
-    if (self.hayBarraCercana()) {
-      self.error("No hay nada para agarrar acá.")
-    }
+  // Elige solo un montículo: así cada pulsación de búsqueda revisa un único lugar.
+  method monticuloCercanoSinBuscar() {
+    var monticuloEncontrado = null
+    monticulosEnSala.todos().forEach({ monticulo =>
+      if (monticuloEncontrado == null and self.estaCerca(monticulo.position()) and not monticulo.fueBuscado()) {
+        monticuloEncontrado = monticulo
+      }
+    })
+    return monticuloEncontrado
   }
 
-  method hayBarraCercana() = self.hayMonticuloCerca() and self.hayMonticuloConBarraCerca()
+method hayMonticuloCerca() = monticulosEnSala.todos().any(
+                            { monticulo => monticulo.position() != position and self.estaCerca(monticulo.position())})
 
-  method hayMonticuloCerca() = monticulosEnSala.todos().any(
-                              { monticulo => monticulo.position() != position and self.estaCerca(monticulo.position())})
-
-  method hayMonticuloConBarraCerca() = monticulosEnSala.todos().any(
-                              { monticulo => monticulo.position() != position and monticulo.esMonticuloConBarraDentro()})
-
-  method puedeAgarrar(cosa) = not cosa.estaRecolectada() and self.tieneLinternaEncendida() and self.estaCerca(cosa.position())
+method hayMonticuloConBarraCerca() = monticulosEnSala.todos().any(
+                            { monticulo => monticulo.position() != position and self.estaCerca(monticulo.position()) and monticulo.esMonticuloConBarraDentro() and not monticulo.fueBuscado()})
 
   method abrirPuerta() {
     self.validarAbrirPuerta()

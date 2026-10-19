@@ -22,6 +22,16 @@
     Objetivo: Recorre la sala buscando y encontrando 3 barras de energía (cambiar a nombre si luego tendrá) para poder abrir la puerta hacia la 2° sala de la nave.
     Dificultad: Mantén la linterna prendida en todo momento recargándola con la tecla 'R', ya que en la oscuridad se encuentran bichos que podrían atacarte facilmente.
 
+#### Estado de la recolección
+- Con **B**, buscá en un montículo cercano. Cada montículo se puede revisar una sola vez.
+- Hay cinco montículos: tres tienen una barra y dos están vacíos. Buscar en uno vacío no suma barras.
+- El inventario cambia de imagen según la cantidad: `inventario.png` (0), `inventario1.png` (1), `inventario2.png` (2) e `inventario3.png` (3).
+- La mochila queda para las pruebas; el juego usa un contador separado para las barras encontradas.
+
+#### Pendiente en Sala 1
+- Implementar la recarga de la linterna con **R** y conectar la entrega de las tres barras con la apertura de la puerta.
+- Activar los bichos y definir qué ocurre cuando alcanzan al personaje.
+
 ### Sala 2°:
     Objetivo: Agarrá un papel con extraños símbolos e ilumina con la linterna hacia las piedras que hay por toda la sala, algunas pueden tener inscripciones que te ayudarán a armar un código que se usa en la puerta para salir de la sala.
     Dificultad: Tratar de armar el código para la puerta siguiendo los patrones de la hoja (agregarle símbolos difíciles o que haya un timer para apurar el trámite...)
