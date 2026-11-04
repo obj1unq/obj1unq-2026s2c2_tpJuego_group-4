@@ -8,7 +8,7 @@ object inicio {
 	const intervalo = 1000
 	var estadoLuz = prendido
 	const visuales = []
-	var property fondo = "fondoGris.jpg"     // agregado solo para el test
+	var property fondo = "sala1.jpg"     // agregado solo para el test
 
 /*
 tema con los parpadeos y los visuales..tener una lista sirve como un registro para todas las visuales de la 'sala', esten visibles o no
@@ -17,10 +17,10 @@ las visuales permite volver a invocar todas las visuales, tal y cómo estaban pr
 */
 
 	method configurarEscenario() {
-		game.title("Escenario inicial")
+		game.title("Primera sala")
 		game.height(20)
 		game.width(20)
-		game.boardGround("fondoGris.jpg")
+		game.boardGround("sala1.jpg")
 	}
 
 	method registrarVisual(visual) {
@@ -78,9 +78,9 @@ object prendido {
 	method parpadeo() = apagado
 
 	method activar() {
-		game.boardGround("fondoGris.jpg")
+		game.boardGround("sala1.jpg")
 		//game.removeVisual(oscuridad)
-		inicio.fondo("fondoGris.jpg")
+		inicio.fondo("fondoOscuro.jpg")
 		inicio.actualizarVisuales()
 	}
 
