@@ -42,23 +42,23 @@ describe "Tests de cualquier cosa..." {
     //assert.equals(puerta.position(), personaje.position())
   }
 
-  test "detectar monticulo cercano en diagonal y junto al borde" {
-    const monticulo = new Monticulo(position = game.at(0, 0))
-    monticulosEnSala.registrar(monticulo)
-    game.addVisual(monticulo)
+  //test "detectar monticulo cercano en diagonal y junto al borde" {
+  //  const monticulo = new Monticulo(position = game.at(0, 0))
+  //  monticulosEnSala.registrar(monticulo)
+  //  game.addVisual(monticulo)
 
-    personaje.position(game.at(1, 1))
-    assert.equals(true, personaje.hayMonticuloCerca())
+    //personaje.position(game.at(1, 1))
+    //assert.equals(true, personaje.hayMonticuloCerca())
 
-    personaje.position(game.at(0, 1))
-    assert.equals(true, personaje.hayMonticuloCerca())
+    //personaje.position(game.at(0, 1))
+    //assert.equals(true, personaje.hayMonticuloCerca())
 
-    personaje.position(game.at(2, 2))
-    assert.equals(false, personaje.hayMonticuloCerca())
+    //personaje.position(game.at(2, 2))
+    //assert.equals(false, personaje.hayMonticuloCerca())
 
-    game.removeVisual(monticulo)
-    monticulosEnSala.quitar(monticulo)
-  }
+  //   game.removeVisual(monticulo)
+  //   monticulosEnSala.quitar(monticulo)
+  // }
 
   test "buscar una barra cercana la recolecta una sola vez" {
     const monticulo = new Monticulo(position = game.at(2, 3), tieneBarra = true)

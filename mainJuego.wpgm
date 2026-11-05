@@ -15,7 +15,7 @@ object config {      //evaluar si queda o no
 		game.title("EscapAlien")
 		game.height(20)
 		game.width(20)
-		//game.boardGround("fondoOscuro.jpg")
+		game.boardGround("fondoOscuro.jpg")
 	}
 }
 
@@ -59,15 +59,18 @@ program Juego {
 	game.addVisual(personaje)
 	inicio.registrarVisual(personaje)
 	
-	//const bicho1 = new Bicho(position = game.at(1,2))            desactivé los bichos por ahora, funcionan bien
-	//game.addVisual(bicho1)
+	const bicho1 = new Bicho(position = game.at(9,9))            //desactivé los bichos por ahora, funcionan bien
+	game.addVisual(bicho1)
 	//
 	//const bicho2 = new Bicho(position = game.at(3,4))
 	//game.addVisual(bicho2)
-	
+	  const robot = new Robot(position = game.at(7,7))
+	  game.addVisual(robot)
 
-	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
+	  game.onTick(10000,"Perseguir Personaje" + bicho1.identity() , {bicho1.seguirPJ()})
 	//game.onTick(3000,"Perseguir Personaje" + bicho1.identity() , {bicho2.seguirPJ()})
+	  game.onTick(10000,"Perseguir Personaje" + robot.identity() , {robot.seguirPJ()}) 
+	  game.onTick(20000,"Disparar al Personaje" + robot.identity() , {robot.dispararAlPersonaje()})
 	
 	// TECLAS
 	keyboard.w().onPressDo({inicio.moverPersonaje(arriba)})

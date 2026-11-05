@@ -134,7 +134,7 @@ var property position = game.center()
         }
     }
 
-    method esMonticuloConBarraDentro() = tieneBarra
+    //method esMonticuloConBarraDentro() = tieneBarra
 
     method barra() {
         self.validarBarra()
