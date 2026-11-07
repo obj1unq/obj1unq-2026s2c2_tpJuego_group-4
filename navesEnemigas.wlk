@@ -2,16 +2,24 @@ import wollok.game.*
 import naveJugador.*
 
 class Enemigo {
-
     var property position 
     var property vida = 3
     var property direccion = 1
-    
+    const property posicionInicial = game.at(5, 5)
+
+
+
     method image()
-    
+
     method aparecer() {
         game.addVisual(self)
         self.iniciarMovimiento()
+    }
+
+    method reiniciar() {
+        position = posicionInicial
+        vida = 3
+        direccion = 1
     }
 
     method recibirDaño() {
@@ -21,16 +29,16 @@ class Enemigo {
         }
     }
 
-    
-
     method puntosQueOtorga() 
 
     method morir() {
-        jugador.puntos(jugador.puntos() + self.puntosQueOtorga())
+        jugador.sumarPuntos(self.puntosQueOtorga())
         self.desaparecer()
     }
 
     method desaparecer() {
+        game.removeTickEvent("moverEnemigo" + self.identity())
+        game.removeTickEvent("dispararTanque" + self.identity())
         if (game.hasVisual(self)) {
             game.removeVisual(self)
         }
@@ -52,7 +60,6 @@ class Enemigo {
     }
 
     method iniciarDisparos()
-
 }
 
 // TIPO 1: Tanque 
@@ -60,7 +67,7 @@ class Tanque inherits Enemigo {
 
     override method image() = "enemigoTanque.png"
 
-    override method puntosQueOtorga() = 2000
+    override method puntosQueOtorga() = 200
 
     override method iniciarDisparos() {
         game.onTick(10000, "dispararTanque" + self.identity(), {self.disparar()})
@@ -104,4 +111,3 @@ class ProyectilEnemigo {
     }
 
 }
-

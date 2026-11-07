@@ -1,12 +1,63 @@
 import direcciones.*
-import vida.*
+import contador.*
 import naveJugador.*
 import navesEnemigas.*
+import mecanicas.*
+import pantallas.*
 
 
 
 describe "distintos tipos de tests para el juego" {
-  test "description" {
-    assert.that(true)
-  }
+    test "el jugador no supera la fila 5" {
+        jugador.position(game.at(4, 5))
+        jugador.moverseA(arriba)
+
+        assert.equals(game.at(4,5), jugador.position())
+    }
+
+    test "llegar a 5000 puntos muestra la pantalla de victoria" {
+        const tanque1 = new Tanque(position = game.at(5, 5), posicionInicial = game.at(5, 5))
+        const tanque2 = new Tanque(position = game.at(5, 6), posicionInicial = game.at(5, 6))
+        mecanicas.iniciarPartida([tanque1, tanque2])
+        jugador.sumarPuntos(5000)
+
+        assert.that(game.boardGround().image() == "fondoWin.png")
+    }
+
+    test "reiniciar despues de perder recupera la partida" {
+        const tanque1 = new Tanque(position = game.at(5, 5), posicionInicial = game.at(5, 5))
+        const tanque2 = new Tanque(position = game.at(5, 6), posicionInicial = game.at(5, 6))
+        mecanicas.iniciarPartida([tanque1, tanque2])
+        tanque1.position(game.at(1, 5))
+        tanque1.vida(1)
+        tanque1.direccion(-1)
+        jugador.recibirDaño()
+        jugador.recibirDaño()
+        jugador.recibirDaño()
+        assert.equals("partida perdida", mecanicas.estadoActual().nombre())
+        mecanicas.reiniciarJuego()
+
+        assert.equals("en juego", mecanicas.estadoActual().nombre())
+        assert.equals(3, jugador.vidas())
+        assert.equals(0, jugador.puntos())
+        assert.equals(game.at(7,2), jugador.position())
+        assert.that(game.hasVisual(jugador))
+        assert.that(game.hasVisual(tanque1))
+        assert.that(game.hasVisual(tanque2))
+        assert.equals(game.at(5,5), tanque1.position())
+        assert.equals(game.at(5,6), tanque2.position())
+        assert.equals(3, tanque1.vida())
+    }
+
+    test "reiniciar con R no inicia otra partida desde la pantalla de victoria" {
+        const tanque1 = new Tanque(position = game.at(5, 5), posicionInicial = game.at(5, 5))
+        const tanque2 = new Tanque(position = game.at(5, 6), posicionInicial = game.at(5, 6))
+        mecanicas.iniciarPartida([tanque1, tanque2])
+        jugador.sumarPuntos(5000)
+        assert.equals("partida ganada", mecanicas.estadoActual().nombre())
+        mecanicas.reiniciarJuego()
+
+        assert.equals("fondoWin.png", game.boardGround().image())
+        assert.notThat(game.hasVisual(jugador))
+    }
 }
