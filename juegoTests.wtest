@@ -1,0 +1,12 @@
+import direcciones.*
+import vida.*
+import naveJugador.*
+import navesEnemigas.*
+
+
+
+describe "distintos tipos de tests para el juego" {
+  test "description" {
+    assert.that(true)
+  }
+}
