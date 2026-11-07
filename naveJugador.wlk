@@ -1,36 +1,45 @@
 import wollok.game.*
 import navesEnemigas.*
+import direcciones.*
+import contador.*
+import mecanicas.*
+
+
+
 
 object jugador {
-
     var property position = game.at(7, 2)
-    var property vidas = 3
+    var vidas = 3
     var property puntos = 0
+
+
 
     method image() = "naveJugador.png"
 
-    method moverArriba() {
-        if (position.y() < 5) {
-            position = position.up(1)
+    method mover(direccion) {
+        if (direccion.puedeMoverDesde(position, 3, game.width() - 1)) {
+            position = direccion.siguiente(position)
         }
     }
 
-    method moverAbajo() {
-        if (position.y() > 0) {
-            position = position.down(1)
+    method moverseA(_direcion){
+		self.mover(_direcion)
+    }
+
+    method vidas() = vidas
+
+    method sumarPuntos(cantidad) {
+        const puntosParaGanarJuego = contador.vida.puntosParaGanar()
+        puntos = puntos + cantidad
+        if (puntos >= puntosParaGanarJuego) {
+            mecanicas.ganar()
         }
     }
 
-    method moverIzquierda() {
-        if (position.x() > 0) {
-            position = position.left(1)
-        }
-    }
-
-    method moverDerecha() {
-        if (position.x() < game.width() - 1) {
-            position = position.right(1)
-        }
+    method reiniciar() {
+        position = game.at(7, 2)
+        vidas = 3
+        puntos = 0
     }
 
     method disparar() {
@@ -47,17 +56,17 @@ object jugador {
     }
 
     method morir() {
-        game.removeVisual(self)
+        mecanicas.perder()
     }
-
 }
 
 
 
 class ProyectilJugador {
-
     var property position
-    
+
+
+
     method image() = "proyectilAzul.png"
 
     method iniciarMovimiento() {
@@ -84,6 +93,5 @@ class ProyectilJugador {
         enemigo.recibirDaño()
         self.desaparecer()
     }
-
 }
 
