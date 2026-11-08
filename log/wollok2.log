@@ -72,3 +72,4 @@
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":274,"timestamp":"2026-11-08T03:56:42.183Z"}
 {"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":22148,"timestamp":"2026-11-08T03:57:04.057Z"}
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":266,"timestamp":"2026-11-08T03:59:31.379Z"}
+{"level":"info","message":"Removing diagnostics from /c:/Users/unuas/OneDrive/Desktop/Lucas/obj1unq-2026s2c2_tpJuego_group-4/enem.wlk","timestamp":"2026-11-08T04:02:13.863Z"}
