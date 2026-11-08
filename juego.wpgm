@@ -1,0 +1,28 @@
+import mecanicas.*
+import naveJugador.*
+import navesEnemigas.*
+import wollok.game.*
+
+
+
+
+// la mayoría de las cosas de este archivo se movieron a mecanicas.wlk por el tema del reinicio y demás
+object config {
+    method configureGame() {
+        game.title("Wallaga") // Wollok + Galaga ;) 
+        game.cellSize(100)
+	    game.height(10)
+	    game.width(10)
+	    game.boardGround("fondo.png")
+    }
+}
+
+
+
+program juego {
+    config.configureGame()
+    
+    mecanicas.iniciarPartida([])
+
+    game.start()
+}
