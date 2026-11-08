@@ -5,6 +5,7 @@ import naveJugador.*
 import navesEnemigas.*
 import direcciones.*
 import contador.*
+import generador.*
 
 
 
@@ -12,13 +13,10 @@ import contador.*
 
 object mecanicas {
     var estado = estadoEnJuego       // dejar este estado para que la mecanica trabaje según él??? 
-    var tanques = []
+    var enemigos = []
 
-
-
-
-    method iniciarPartida(tanquesIniciales) {
-        tanques = tanquesIniciales
+    method iniciarPartida(enemigosIniciales) {
+        enemigos = enemigosIniciales
         estado = estadoEnJuego
         game.boardGround("fondo.png")
         self.configurarControles()
@@ -26,7 +24,9 @@ object mecanicas {
         game.addVisual(vida)
         game.addVisual(contadorVida)
         game.addVisual(score)
-        tanques.forEach{tanque => tanque.aparecer()}
+        enemigos.forEach{enemigo => enemigo.aparecer()}
+
+        generador.iniciar()
     }
 
     method configurarControles() {
@@ -61,18 +61,13 @@ object mecanicas {
     method reiniciarPartida() {
         game.clear()
         jugador.reiniciar()
-        tanques.forEach{tanque => tanque.reiniciar()}
-        self.iniciarPartida(tanques)
+        enemigos.forEach{enemigo => enemigo.reiniciar()}
+        generador.reiniciar()
+        self.iniciarPartida(enemigos)
     }
 
     method estadoActual() = estado
 }
-
-
-
-
-
-
 
 
 object estadoEnJuego {

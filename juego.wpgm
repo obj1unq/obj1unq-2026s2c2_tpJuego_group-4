@@ -21,9 +21,8 @@ object config {
 
 program juego {
     config.configureGame()
-    const tanque1 = new Tanque(position = game.at(0, 5), posicionInicial = game.at(5, 5))
-    const tanque2 = new Tanque(position = game.at(9, 6), posicionInicial = game.at(5, 6))
-    mecanicas.iniciarPartida([tanque1, tanque2])
+    
+    mecanicas.iniciarPartida([])
 
     game.start()
 }

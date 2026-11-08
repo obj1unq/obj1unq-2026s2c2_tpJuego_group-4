@@ -56,8 +56,13 @@ object jugador {
     }
 
     method morir() {
+        if (game.hasVisual(self)) {
+            game.removeVisual(self)
+        }
+
         mecanicas.perder()
     }
+
 }
 
 
@@ -65,12 +70,14 @@ object jugador {
 class ProyectilJugador {
     var property position
 
-
-
     method image() = "proyectilAzul.png"
 
     method iniciarMovimiento() {
         game.onTick(100, "moverProyectil" + self.identity(), { self.mover() })
+
+        game.onCollideDo(self, { objeto =>  objeto.recibirDaño()
+        self.desaparecer()
+        })
     }
 
     method mover() {

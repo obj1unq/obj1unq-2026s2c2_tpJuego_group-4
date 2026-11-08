@@ -1,9 +1,6 @@
 import game.*
 
 
-
-
-
 object tablero {
     method validarDentro(position) {
         if (not self.dentro(position)) {
