@@ -67,38 +67,5 @@ object jugador {
 
 
 
-class ProyectilJugador {
-    var property position
 
-    method image() = "proyectilAzul.png"
-
-    method iniciarMovimiento() {
-        game.onTick(100, "moverProyectil" + self.identity(), { self.mover() })
-
-        game.onCollideDo(self, { objeto =>  objeto.recibirDaño()
-        self.desaparecer()
-        })
-    }
-
-    method mover() {
-        if (position.y() >= game.height() - 1) {
-            self.desaparecer()
-        } else {
-            position = position.up(1)
-        }
-    }
-
-    method desaparecer() {
-        game.removeTickEvent("moverProyectil" + self.identity())
-
-        if (game.hasVisual(self)) {
-            game.removeVisual(self)
-        }
-    }
-
-    method chocarConEnemigo (enemigo) {
-        enemigo.recibirDaño()
-        self.desaparecer()
-    }
-}
 

@@ -70,6 +70,12 @@ object mecanicas {
 }
 
 
+
+
+
+
+
+
 object estadoEnJuego {
     //method nombre() = "en juego"
 

@@ -2,6 +2,23 @@ import wollok.game.*
 import naveJugador.*
 import generador.*
 
+
+
+/*
+    cambiar:
+-metodos en las clases padre (generalizar +) en las naves enemigas y generador.wlk
+-imagenes para el score y la vida
+-diferentes tipos de comportamientos para las naves (nave kamikaze)
+-cambiar de puntaje--->niveles, por ejemplo:
+    -lvl1: naves simples/ligeras
+    -lvl2: naves tanque/kamikaze/etc...
+    -lvl3: nave jefe (imagen mas grande, no tanto xq el hitbox puede perjudicar)
+-no duplicar código
+*/
+
+
+
+
 class Enemigo {
 
     var property position
@@ -49,6 +66,8 @@ class Enemigo {
         }
     }
 
+
+
     method iniciarMovimiento() {
         game.onTick( 300, "moverEnemigo" + self.identity(), { self.mover() })
 
@@ -68,7 +87,20 @@ class Enemigo {
         )
     }
 
-    method iniciarDisparos()
+    method iniciarDisparos(){
+        game.onTick(self.valor(), "dispararEnemigo" + self.identity(), { self.disparar() })   //idem los otros
+    }
+
+    method disparar() {
+        const proyectil = new ProyectilEnemigo(position = self.position().down(1))
+
+        game.addVisual(proyectil)
+        proyectil.iniciarMovimiento()
+    }
+
+    //method x(self) = 1
+
+    method valor() = 0   // cambiar nombre
 
 }
 
@@ -79,18 +111,13 @@ class Tanque inherits Enemigo {
 
     override method puntosQueOtorga() = 2000
 
-    override method iniciarDisparos() {
-        game.onTick(10000, "dispararEnemigo" + self.identity(), { self.disparar() })
+    override method valor() = 10000
+
+    override method x() {
+        
     }
 
-    method disparar() {
-        const proyectil = new ProyectilEnemigo(position = self.position().down(1))
-
-        game.addVisual(proyectil)
-        proyectil.iniciarMovimiento()
-    }
-
-   override method liberarCupo() {
+    override method liberarCupo() {
         generador.liberarTanque(self)
     }
 
@@ -148,37 +175,3 @@ class Jefe inherits Enemigo {
 }
 
 
-class ProyectilEnemigo {
-
-    var property position
-
-    method image() = "proyectilRojo.png"
-
-    method iniciarMovimiento() {
-        game.onTick( 150, "moverProyectilEnemigo" + self.identity(), { self.mover() })
-
-        game.onCollideDo(self, { objeto =>  objeto.recibirDaño()
-        self.destruir()
-        })
-        
-    }
-
-    method mover() {
-        if (position.y() <= 0) {
-            self.destruir()
-        } else {
-            position = position.down(1)
-        }
-    }
-
-    method destruir() {
-        game.removeTickEvent(
-            "moverProyectilEnemigo" + self.identity()
-        )
-
-        if (game.hasVisual(self)) {
-            game.removeVisual(self)
-        }
-    }
-
-}
