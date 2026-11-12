@@ -35,9 +35,13 @@ object mecanicas {
         keyboard.a().onPressDo({estado.mover(izquierda)})
         keyboard.d().onPressDo({estado.mover(derecha)})
         keyboard.space().onPressDo({estado.disparar()})
-        keyboard.r().onPressDo({estado.reiniciar()})    // en teoría sólo puede funcionar cuando esté la pantalla de GO
+        self.configurarReinicio()
     }
 
+    method configurarReinicio() {
+        keyboard.r().onPressDo({ self.reiniciarJuego() })
+    }
+    
     method perder() {
         estado.perder()
     }
@@ -51,7 +55,7 @@ object mecanicas {
         game.clear()
         game.boardGround(pantalla)
         game.addVisual(restartHint)
-        keyboard.r().onPressDo({estado.reiniciar()})
+        self.configurarReinicio()
     }
 
     method reiniciarJuego() {
@@ -68,13 +72,6 @@ object mecanicas {
 
     method estadoActual() = estado
 }
-
-
-
-
-
-
-
 
 object estadoEnJuego {
     //method nombre() = "en juego"
@@ -95,37 +92,35 @@ object estadoEnJuego {
         mecanicas.finalizarEn(winWindow, estadoGanado)
     }
 
-    method reiniciar() = 0
+    method reiniciar(){}
 }
 
-object estadoPerdido {
-    //method nombre() = "partida perdida"
+class EstadoFinal {
 
-    method mover(_direccion) = 0
+    method mover(_direccion) {}
 
-    method disparar() = 0
+    method disparar() {}
 
-    method perder() = 0
+    method perder() {}
 
-    method ganar() = 0
+    method ganar() {}
 
-    method reiniciar() {
+    method reiniciar() {}
+
+}
+
+object estadoPerdido inherits EstadoFinal {
+
+    override method reiniciar() {
         mecanicas.reiniciarPartida()
     }
+
 }
 
-object estadoGanado {
-    //method nombre() = "partida ganada"
+object estadoGanado inherits EstadoFinal {
 
-    method mover(_direccion) = 0
 
-    method disparar() = 0
 
-    method perder() = 0
-
-    method ganar() = 0
-
-    method reiniciar() = 0
 }
 
 

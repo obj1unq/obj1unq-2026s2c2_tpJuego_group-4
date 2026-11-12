@@ -1,77 +1,87 @@
 import wollok.game.*
-import naveJugador.*
-import navesEnemigas.*
+import direcciones.*
 
+object bandoJugador {
 
+    method puedeHerirAlJugador() = false
 
-// fusionar esto
-class ProyectilJugador {
-    var property position
+    method puedeHerirAEnemigos() = true
 
-    method image() = "proyectilAzul.png"
-
-    method iniciarMovimiento() {
-        game.onTick(100, "moverProyectil" + self.identity(), { self.mover() })
-
-        game.onCollideDo(self, { objeto =>  objeto.recibirDaño()
-        self.desaparecer()
-        })
-    }
-
-    method mover() {
-        if (position.y() >= game.height() - 1) {
-            self.desaparecer()
-        } else {
-            position = position.up(1)
-        }
-    }
-
-    method desaparecer() {
-        game.removeTickEvent("moverProyectil" + self.identity())
-
-        if (game.hasVisual(self)) {
-            game.removeVisual(self)
-        }
-    }
-
-    method chocarConEnemigo (enemigo) {
-        enemigo.recibirDaño()
-        self.desaparecer()
-    }
 }
 
-//con esto
-class ProyectilEnemigo {
+object bandoEnemigo {
+
+    method puedeHerirAlJugador() = true
+
+    method puedeHerirAEnemigos() = false
+
+}
+
+class Proyectil {
 
     var property position
+    const trayectoria
+    var activo = true
 
-    method image() = "proyectilRojo.png"
+    method image()
 
-    method iniciarMovimiento() {
-        game.onTick( 150, "moverProyectilEnemigo" + self.identity(), { self.mover() })
-        //self.impactar()
-        game.onCollideDo(self, { objeto =>  objeto.recibirDaño()
-        self.destruir()
-        })
-        
+    method bando()
+
+    method intervaloMovimiento() 
+
+    method esBlancoDe(_bando) = false
+
+    method lanzar() {
+        game.addVisual(self)
+        game.onTick(self.intervaloMovimiento(), "moverProyectil" + self.identity(), { self.mover() })
+        game.onCollideDo(self, { objeto => self.chocarCon(objeto) })
     }
 
     method mover() {
-        if (position.y() <= 0) {
-            self.destruir()
+        const siguiente = trayectoria.siguiente(position)
+
+        if (tablero.dentro(siguiente)) {
+            position = siguiente
         } else {
-            position = position.down(1)
+            self.destruir()
+        }
+    }
+
+    method chocarCon(objeto) {
+        if (activo and objeto.esBlancoDe(self.bando())) {
+            objeto.recibirDaño()
+            self.destruir()
         }
     }
 
     method destruir() {
-        game.removeTickEvent(
-            "moverProyectilEnemigo" + self.identity()
-        )
+        activo = false
 
         if (game.hasVisual(self)) {
             game.removeVisual(self)
         }
+        game.removeTickEvent("moverProyectil" + self.identity())
     }
 
 }
+
+class ProyectilJugador inherits Proyectil {
+
+    override method image() = "proyectilAzul.png"
+
+    override method bando() = bandoJugador
+
+    override method intervaloMovimiento() = 100
+
+}
+
+class ProyectilEnemigo inherits Proyectil {
+
+    override method image() = "proyectilRojo.png"
+
+    override method bando() = bandoEnemigo
+
+    override method intervaloMovimiento() = 150
+
+}
+

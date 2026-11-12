@@ -35,11 +35,23 @@ Otorga 500 puntos al ser destruido
 
 *Jefe*
 
-Tiene 5 vidas
+Tiene 3 vidas
 
 Dispara cada 5 segundos
 
 Otorga 1000 puntos al ser destruido
+
+Dispara proyectiles guiados al jugador
+
+*Kamikaze*
+
+Tiene 2 vidas
+
+Dispara cada 7 segundos
+
+Otorga 200 puntos al ser destruido
+
+En un momento aleatorio se lanza a si mismo hacia el jugador
 
 --
 

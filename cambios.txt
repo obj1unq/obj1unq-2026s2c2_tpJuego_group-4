@@ -1,0 +1,12 @@
+
+
+    cambiar:
+-metodos en las clases padre (generalizar +) en las naves enemigas y generador.wlk
+-imagenes para el score y la vida
+-diferentes tipos de comportamientos para las naves (nave kamikaze)
+-cambiar de puntaje ---> niveles, por ejemplo:
+    -lvl1: naves simples/ligeras
+    -lvl2: naves tanque/kamikaze/etc...
+    -lvl3: nave jefe (imagen mas grande, no tanto xq el hitbox puede perjudicar)
+-no duplicar código
+

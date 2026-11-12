@@ -1,7 +1,11 @@
-import mecanicas.*
+import wollok.game.*
+import pantallas.*
 import naveJugador.*
 import navesEnemigas.*
-import wollok.game.*
+import direcciones.*
+import contador.*
+import generador.*
+import mecanicas.*
 
 
 
@@ -20,9 +24,9 @@ object config {
 
 
 program juego {
-    config.configureGame()
-    
-    mecanicas.iniciarPartida([])
 
+    config.configureGame()
+    mecanicas.iniciarPartida([])
     game.start()
+
 }

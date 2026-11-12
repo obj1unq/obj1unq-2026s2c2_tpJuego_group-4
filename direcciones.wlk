@@ -53,3 +53,23 @@ object izquierda{
         return nueva
     }
 }
+
+class Trayectoria {
+
+    const origen
+    const destino
+
+    method longitud() =
+        (destino.x() - origen.x()).abs().max((destino.y() - origen.y()).abs())
+
+    method siguiente(position) {
+        const pasoActual = (position.x() - origen.x()).abs().max((position.y() - origen.y()).abs()) + 1
+        const avance = pasoActual / self.longitud()
+
+        return game.at(
+            origen.x() + ((destino.x() - origen.x()) * avance).round(),
+            origen.y() + ((destino.y() - origen.y()) * avance).round()
+        )
+    }
+
+}
