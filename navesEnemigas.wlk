@@ -6,11 +6,12 @@ import direcciones.*
 
 
 class Enemigo {
-
     var property position
     var property vida = self.vidaInicial()
     var property direccion = 1
     const property posicionInicial = game.at(5, 5)
+
+
 
     method image()
 
@@ -108,17 +109,6 @@ class Enemigo {
 }
 
 
-class Tanque inherits Enemigo {
-
-    override method image() = "enemigoTanque.png"
-
-    override method vidaInicial() = 3
-
-    override method puntosQueOtorga() = 100
-
-    override method intervaloDisparo() = 10000
-
-}
 
 class Ligero inherits Enemigo {
 
@@ -126,22 +116,18 @@ class Ligero inherits Enemigo {
 
     override method vidaInicial() = 1
 
-    override method puntosQueOtorga() = 500
+    override method puntosQueOtorga() = 25
 
     override method intervaloDisparo() = 5000
-
-
-
 }
 
 
 class Jefe inherits Enemigo {
-
     override method image() = "enemigoJefe.png"
 
     override method vidaInicial() = 3
 
-    override method puntosQueOtorga() = 1000   
+    override method puntosQueOtorga() = 999   
 
     override method intervaloDisparo() = 5000
 
@@ -149,20 +135,20 @@ class Jefe inherits Enemigo {
         new Trayectoria(
             origen = self.posicionDeDisparo(), destino = jugador.position()
             )
-
 }
 
 
 class Kamikaze inherits Enemigo {
-
     var lanzado = false
     var trayectoriaDePicada = null // mmm
+
+
 
     override method image() = "enemigoKamikaze.png"
 
     override method vidaInicial() = 2
 
-    override method puntosQueOtorga() = 200
+    override method puntosQueOtorga() = 100
 
     override method intervaloDisparo() = 7000 
 

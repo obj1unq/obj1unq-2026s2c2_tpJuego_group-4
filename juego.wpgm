@@ -24,9 +24,7 @@ object config {
 
 
 program juego {
-
     config.configureGame()
     mecanicas.iniciarPartida([])
     game.start()
-
 }

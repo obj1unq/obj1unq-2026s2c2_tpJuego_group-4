@@ -21,12 +21,17 @@ object mecanicas {
         game.boardGround("fondo.png")
         self.configurarControles()
         game.addVisual(jugador)
-        game.addVisual(vida)
-        game.addVisual(contadorVida)
+        //game.addVisual(vida)
+        //game.addVisual(contadorVida)
+        self.configurarContadores()      // de vida y del puntaje
         game.addVisual(score)
         enemigos.forEach{enemigo => enemigo.aparecer()}
 
         generador.iniciar()
+    }
+
+    method configurarContadores() {
+        
     }
 
     method configurarControles() {
@@ -54,7 +59,7 @@ object mecanicas {
         estado = nuevoEstado
         game.clear()
         game.boardGround(pantalla)
-        game.addVisual(restartHint)
+        //game.addVisual(restartHint)
         self.configurarReinicio()
     }
 
@@ -96,7 +101,6 @@ object estadoEnJuego {
 }
 
 class EstadoFinal {
-
     method mover(_direccion) {}
 
     method disparar() {}
@@ -106,21 +110,18 @@ class EstadoFinal {
     method ganar() {}
 
     method reiniciar() {}
-
 }
 
 object estadoPerdido inherits EstadoFinal {
-
     override method reiniciar() {
         mecanicas.reiniciarPartida()
     }
-
 }
 
 object estadoGanado inherits EstadoFinal {
-
-
-
+    override method ganar(){
+        mecanicas.ganar()
+    }
 }
 
 
