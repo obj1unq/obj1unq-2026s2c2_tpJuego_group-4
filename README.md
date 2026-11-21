@@ -46,7 +46,7 @@
 ### *Jefe*
     Tiene 3 vidas
     Dispara cada 5 segundos
-    Dispara proyectiles guiados al jugador y su daño equivale al total de vidas que tenga el jugador
+    Dispara proyectiles guiados al jugador y su daño equivale al total de vidas que tenga el jugador (insta kill)
 
 
 ## CONTROLES

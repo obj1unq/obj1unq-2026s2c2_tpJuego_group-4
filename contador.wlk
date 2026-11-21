@@ -5,17 +5,24 @@ import niveles.*
 
 
 
-class ContadorDePuntaje {     // sirve para el score solamente, la vida se maneja mediante imágenes...
+class ContadorDePuntaje {     // sirve para el score solamente, la vida se maneja mediante imágenes
     const property position 
+    var valor = 0
 
-
-
-    method valorDelContador()
+    method valorDelContador() = valor
 
     method agregarAlJuego() {
         game.addVisual(new Unidad(contador = self))
         game.addVisual(new Decena(contador = self))
         game.addVisual(new Centena(contador = self))
+    }
+
+    method agregarPuntos(cantidad) {
+        valor += cantidad
+    }
+
+    method reiniciar() {
+        valor = 0
     }
 }
 
@@ -40,57 +47,53 @@ class Unidad inherits Digito{
 class Decena inherits Digito {
     override method offset() = 1
     
-    override method valor(valorQueRecibePorDecena) = (valorQueRecibePorDecena .div(10)) % 10
+    override method valor(valorQueRecibePorDecena) = (valorQueRecibePorDecena.div(10)) % 10
 
 }
 
 class Centena inherits Digito {
     override method offset() = 0
 
-    override method valor(valorQueRecibePorCentena) = valorQueRecibePorCentena.div(100)
+    override method valor(valorQueRecibePorCentena) = valorQueRecibePorCentena.div(100) % 10
 }
 
-
-
-
-
-
-
-
-
-class ContadorDeVidas {      // son 5 vidas que tiene el jugador
-    var cantVidasPorAhora = jugador.vidas()
-
-
+class ContadorDeVidas {
+    const corazones = [
+        new Vida(position = game.at(0, 9)),
+        new Vida(position = game.at(1, 9)),
+        new Vida(position = game.at(2, 9)),
+        new Vida(position = game.at(3, 9)),
+        new Vida(position = game.at(4, 9))
+    ]
 
     method agregarAJuego() {
-        //game.addVisual(new Vida(position = game.at(0, 9)))
-        //game.addVisual(new Vida(position = game.at(1, 9)))
-        //game.addVisual(new Vida(position = game.at(2, 9)))
-        //game.addVisual(new Vida(position = game.at(3, 9)))
-        //game.addVisual(new Vida(position = game.at(4, 9)))
-        const totalVidaDelJugador = 5
-        var val = 0
-        totalVidaDelJugador.times({
-            game.addVisual(new Vida(position = game.at(val, 9)))
-            val+=1
-            })
+        corazones.forEach{ corazon => game.addVisual(corazon) }
+        self.actualizar(jugador.vidaEnMedios())
     }
+
+    method actualizar(vidaEnMedios) {
+        var indice = 0
+        corazones.forEach{ corazon =>
+            const vidaDelCorazon = vidaEnMedios - (indice * 2)
+            if (vidaDelCorazon >= 2) {
+                corazon.estado(corazonCompleto)
+            } else if (vidaDelCorazon == 1) {
+                corazon.estado(medioCorazon)
+            } else {
+                corazon.estado(corazonVacio)
+            }
+            indice += 1
+        }
+    }
+
+    method imagenDelCorazon(indice) = corazones.get(indice).image()
 }
 
-
-class Vida {     // al pasar de nivel no se reinicia, pero si cuando moris y reinicias el nivel
-    //var property nivelEnElQueEsta = jugador.nivelEnElQueEsta()
-    //const property puntosParaGanar = nivelEnElQueEsta.puntosParaGanar()
-    var position 
+class Vida {
+    var property position
     var property estado = corazonCompleto
 
-
     method image() = estado.image()
-
-    method position(pos){    // ????
-        position = pos
-    }
 }
 
 // ESTADOS DEL CORAZON
@@ -119,26 +122,34 @@ object corazonVacio {
     //method textColor() = "FFDE21"
 //}
 
-object score {    // al pasar de nivel y al reiniciar el juego, el puntaje vuelve a 0
-    //method text() = "PUNTAJE: " + jugador.puntos()+"/5000"          // cambiar acá si se modifica la meta para ganar
+object score {
+    const contador = new ContadorDePuntaje(position = game.at(6, 9))
 
-    method position() = game.at(6, 9)
+    method valorActual() = contador.valorDelContador()
 
-    //method textColor() = "FFDE21"
-
-    method agregarPuntos(ca) {
-        
+    method agregarAlJuego() {
+        contador.agregarAlJuego()
     }
 
-    method name() {
-        
+    method agregarPuntos(cantidad) {
+        contador.agregarPuntos(cantidad)
+    }
+
+    method reiniciar() {
+        contador.reiniciar()
     }
 }
 
-//object restartHint {
-//    method text() = "R: REINICIAR"
-//
-//    method position() = game.at(5, 2)
-//
-//    method textColor() = "FFDE21"
-//}
+object contadorDeVidas {
+    const contador = new ContadorDeVidas()
+
+    method agregarAJuego() {
+        contador.agregarAJuego()
+    }
+
+    method actualizar(vidaEnMedios) {
+        contador.actualizar(vidaEnMedios)
+    }
+
+    method imagenDelCorazon(indice) = contador.imagenDelCorazon(indice)
+}

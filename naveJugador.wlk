@@ -18,15 +18,17 @@ vida completa         |               vida por la mitad            (se calcular�
 */
 object jugador {
     var property position = game.at(7, 2)
-    var vidas = 5
+    var vidasEnMedios = 10
     var property puntosHastaAhora = 0
-    var property nivelEnElQueEsta = Nivel1 
+    var property nivelEnElQueEsta = nivel1
 
 
 
     method image() = "naveJugador.png"
 
-    method vidas() = vidas
+    method vidas() = vidasEnMedios / 2
+
+    method vidaEnMedios() = vidasEnMedios
 
     method esBlancoDe(bando) = bando.puedeHerirAlJugador()
 
@@ -47,19 +49,17 @@ object jugador {
     }
 
     method sumarPuntos(cantidad) {
-        const puntosParaGanarJuego = nivelEnElQueEsta.puntosParaGanar()
-        
-        contadorDelPuntaje.score.agregarPuntos(cantidad)
+        score.agregarPuntos(cantidad)
         puntosHastaAhora += cantidad
-        if (puntosHastaAhora >= puntosParaGanarJuego) {
-            mecanicas.ganar()
+        if (puntosHastaAhora >= nivelEnElQueEsta.puntosParaGanar()) {
+            mecanicas.completarNivel()
         }
     }
 
-    method recibirDaño(){
-        vidas = vidas - 1
-        contador.recibirDaño(tipoDeNave.puntosQueOtorga())
-        if (vidas <= 0) {
+    method recibirDaño(danioEnMedios) {
+        vidasEnMedios = (vidasEnMedios - danioEnMedios).max(0)
+        contadorDeVidas.actualizar(vidasEnMedios)
+        if (vidasEnMedios == 0) {
             self.morir()
         }
     }
@@ -74,8 +74,16 @@ object jugador {
 
     method reiniciar() {
         position = game.at(7, 2)
-        vidas = 5
+        vidasEnMedios = 10
         puntosHastaAhora = 0
+        nivelEnElQueEsta = nivel1
+        score.reiniciar()
+    }
+
+    method iniciarNivel(nivel) {
+        nivelEnElQueEsta = nivel
+        puntosHastaAhora = 0
+        score.reiniciar()
     }
 
 }

@@ -76,12 +76,22 @@ class ProyectilJugador inherits Proyectil {
 }
 
 class ProyectilEnemigo inherits Proyectil {
+    const danioEnMedios
 
     override method image() = "proyectilRojo.png"
 
     override method bando() = bandoEnemigo
 
     override method intervaloMovimiento() = 150
+
+    method danioEnMedios() = danioEnMedios
+
+    override method chocarCon(objeto) {
+        if (activo and objeto.esBlancoDe(self.bando())) {
+            objeto.recibirDaño(self.danioEnMedios())
+            self.destruir()
+        }
+    }
 
 }
 

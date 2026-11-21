@@ -19,6 +19,8 @@ class Enemigo {
 
     method puntosQueOtorga()
 
+    method danioEnMedios()
+
     method intervaloDisparo() 
 
     method intervaloMovimiento() = 300
@@ -98,7 +100,8 @@ class Enemigo {
     method disparar() {
         const proyectil = new ProyectilEnemigo(
             position = self.posicionDeDisparo(),
-            trayectoria = self.trayectoriaDeDisparo()
+            trayectoria = self.trayectoriaDeDisparo(),
+            danioEnMedios = self.danioEnMedios()
         )
 
         proyectil.lanzar()
@@ -118,6 +121,8 @@ class Ligero inherits Enemigo {
 
     override method puntosQueOtorga() = 25
 
+    override method danioEnMedios() = 1
+
     override method intervaloDisparo() = 5000
 }
 
@@ -128,6 +133,8 @@ class Jefe inherits Enemigo {
     override method vidaInicial() = 3
 
     override method puntosQueOtorga() = 999   
+
+    override method danioEnMedios() = jugador.vidaEnMedios()
 
     override method intervaloDisparo() = 5000
 
@@ -149,6 +156,8 @@ class Kamikaze inherits Enemigo {
     override method vidaInicial() = 2
 
     override method puntosQueOtorga() = 100
+
+    override method danioEnMedios() = 2
 
     override method intervaloDisparo() = 7000 
 
@@ -197,7 +206,7 @@ class Kamikaze inherits Enemigo {
 
     method chocarCon(objeto) {
         if (game.hasVisual(self) and objeto.esBlancoDe(self.bando())) {
-            objeto.recibirDaño()
+            objeto.recibirDaño(self.danioEnMedios())
             self.retirarse()
         }
     }
