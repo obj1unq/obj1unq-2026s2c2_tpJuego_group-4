@@ -23,7 +23,6 @@ object jugador {
     var property nivelEnElQueEsta = nivel1
 
 
-
     method image() = "naveJugador.png"
 
     method vidas() = vidasEnMedios / 2
@@ -68,7 +67,6 @@ object jugador {
         if (game.hasVisual(self)) {
             game.removeVisual(self)
         }
-
         mecanicas.perder()
     }
 

@@ -3,8 +3,6 @@ import naveJugador.*
 import niveles.*
 
 
-
-
 class ContadorDePuntaje {     // sirve para el score solamente, la vida se maneja mediante imágenes
     const property position 
     var valor = 0
