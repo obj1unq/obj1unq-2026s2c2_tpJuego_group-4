@@ -6,6 +6,7 @@ import direcciones.*
 import contador.*
 import generador.*
 import mecanicas.*
+import niveles.*
 
 
 
@@ -24,9 +25,8 @@ object config {
 
 
 program juego {
-
     config.configureGame()
-    mecanicas.iniciarPartida([])
+    //mecanicas.iniciarPartida([])
+    nivel1.configurarNivel()
     game.start()
-
 }

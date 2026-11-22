@@ -4,16 +4,31 @@ import direcciones.*
 import contador.*
 import mecanicas.*
 import proyectil.*
+import niveles.*
 
+
+
+/*
+vida completa         |               vida por la mitad            (se calculará como un rango de 1..5 para una vida completa y de 6..10 para una vida incompleta)
+            1                    ==>                         6
+            2                    ==>                         7
+            3                    ==>                         8
+            4                    ==>                         9
+            5                    ==>                         10
+*/
 object jugador {
-
     var property position = game.at(7, 2)
-    var vidas = 3
-    var property puntos = 0
+    var vidasEnMedios = 10
+    var property puntosHastaAhora = 0
+    var property nivelEnElQueEsta = nivel1
+
+
 
     method image() = "naveJugador.png"
 
-    method vidas() = vidas
+    method vidas() = vidasEnMedios / 2
+
+    method vidaEnMedios() = vidasEnMedios
 
     method esBlancoDe(bando) = bando.puedeHerirAlJugador()
 
@@ -34,16 +49,17 @@ object jugador {
     }
 
     method sumarPuntos(cantidad) {
-        const puntosParaGanarJuego = contador.vida.puntosParaGanar()
-        puntos = puntos + cantidad
-        if (puntos >= puntosParaGanarJuego) {
-            mecanicas.ganar()
+        score.agregarPuntos(cantidad)
+        puntosHastaAhora += cantidad
+        if (puntosHastaAhora >= nivelEnElQueEsta.puntosParaGanar()) {
+            mecanicas.completarNivel()
         }
     }
 
-    method recibirDaño(){
-        vidas = vidas - 1
-        if (vidas <= 0) {
+    method recibirDaño(danioEnMedios) {
+        vidasEnMedios = (vidasEnMedios - danioEnMedios).max(0)
+        contadorDeVidas.actualizar(vidasEnMedios)
+        if (vidasEnMedios == 0) {
             self.morir()
         }
     }
@@ -58,8 +74,16 @@ object jugador {
 
     method reiniciar() {
         position = game.at(7, 2)
-        vidas = 3
-        puntos = 0
+        vidasEnMedios = 10
+        puntosHastaAhora = 0
+        nivelEnElQueEsta = nivel1
+        score.reiniciar()
+    }
+
+    method iniciarNivel(nivel) {
+        nivelEnElQueEsta = nivel
+        puntosHastaAhora = 0
+        score.reiniciar()
     }
 
 }

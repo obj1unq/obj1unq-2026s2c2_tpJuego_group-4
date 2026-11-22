@@ -30,7 +30,6 @@ object generador {
 
     const fabricas = [
         new Fabrica(maximo = 1, crear = { posicion => new Ligero(position = posicion) }),
-        new Fabrica(maximo = 1, crear = { posicion => new Tanque(position = posicion) }),
         new Fabrica(maximo = 1, crear = { posicion => new Kamikaze(position = posicion) }),
         new Fabrica(maximo = 1, crear = { posicion => new Jefe(position = posicion) })
     ]
