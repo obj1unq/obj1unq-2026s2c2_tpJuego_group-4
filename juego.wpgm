@@ -18,7 +18,7 @@ object config {
         game.cellSize(100)
 	    game.height(10)
 	    game.width(10)
-	    game.boardGround("fondo.png")
+	    game.boardGround("fondoCarga.png")
     }
 }
 
@@ -26,7 +26,7 @@ object config {
 
 program juego {
     config.configureGame()
-    //mecanicas.iniciarPartida([])
-    nivel1.configurarNivel()
+    //mecanicas.iniciarPartida([])r
+    nivel1.cargar()
     game.start()
 }

@@ -8,9 +8,6 @@ import contador.*
 import niveles.*
 
 
-
-
-
 object mecanicas {
     var estado = estadoEnJuego       // dejar este estado para que la mecanica trabaje según él??? 
     var enemigos = []
@@ -20,7 +17,7 @@ object mecanicas {
     method iniciarPartida(enemigosIniciales) {
         enemigos = enemigosIniciales
         estado = estadoEnJuego
-        game.boardGround("fondo.png")
+        game.boardGround("fondoCarga.png")
         self.configurarControles()
         game.addVisual(jugador)
         self.configurarContadores()     // de vida y del puntaje
@@ -35,10 +32,10 @@ object mecanicas {
     }
 
     method configurarControles() {
-        keyboard.w().onPressDo({estado.mover(arriba)})
-        keyboard.s().onPressDo({estado.mover(abajo)})
-        keyboard.a().onPressDo({estado.mover(izquierda)})
-        keyboard.d().onPressDo({estado.mover(derecha)})
+        keyboard.w().onPressDo({estado.mover(new Arriba())})
+        keyboard.s().onPressDo({estado.mover(new Abajo())})
+        keyboard.a().onPressDo({estado.mover(new Izquierda())})
+        keyboard.d().onPressDo({estado.mover(new Derecha())})
         keyboard.space().onPressDo({estado.disparar()})
         self.configurarReinicio()
     }
@@ -67,7 +64,7 @@ object mecanicas {
     method cambiarNivel(nivel) {
         enemigos.forEach{ enemigo => enemigo.desaparecer() }
         game.clear()
-        nivel.configurarNivel()
+        nivel.cargar()
     }
 
     method finalizarEn(pantalla, nuevoEstado) {
@@ -77,14 +74,10 @@ object mecanicas {
     }
 
     method reiniciarJuego() {
-        estado.reiniciar()
-    }
-
-    method reiniciarPartida() {
         enemigos.forEach{ enemigo => enemigo.desaparecer() }
         game.clear()
         jugador.reiniciar()
-        nivel1.configurarNivel()
+        nivel1.cargar()
     }
 
     method estadoActual() = estado
@@ -108,8 +101,6 @@ object estadoEnJuego {
     method ganar() {
         mecanicas.finalizarEn(winWindow, estadoGanado)
     }
-
-    method reiniciar(){}
 }
 
 class EstadoFinal {
@@ -125,15 +116,14 @@ class EstadoFinal {
 }
 
 object estadoPerdido inherits EstadoFinal {
-    override method reiniciar() {
-        mecanicas.reiniciarPartida()
-    }
+   
 }
 
 object estadoGanado inherits EstadoFinal {
     override method ganar(){
         mecanicas.ganar()
     }
+
 }
 
 

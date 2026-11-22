@@ -25,7 +25,7 @@ class Enemigo {
 
     method intervaloMovimiento() = 300
 
-    method trayectoriaDeDisparo() = abajo
+    method trayectoriaDeDisparo() = new Abajo()
 
     method posicionDeDisparo() = position.down(1)
 
@@ -149,21 +149,19 @@ class Kamikaze inherits Enemigo {
     var lanzado = false
     var trayectoriaDePicada = null // mmm
 
-
-
     override method image() = "enemigoKamikaze.png"
 
     override method vidaInicial() = 2
 
     override method puntosQueOtorga() = 100
 
-    override method danioEnMedios() = 2
+    override method danioEnMedios() = 2 
 
     override method intervaloDisparo() = 7000 
 
     override method intervaloMovimiento() = if (lanzado) 100 else 300
 
-    method tiempoHastaLanzarse() = 3000.randomUpTo(6000).truncate(0)
+    method tiempoHastaLanzarse() = 60000.randomUpTo(100000).truncate(0)
 
     override method reiniciar() {
         super()

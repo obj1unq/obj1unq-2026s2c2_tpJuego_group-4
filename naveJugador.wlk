@@ -23,7 +23,6 @@ object jugador {
     var property nivelEnElQueEsta = nivel1
 
 
-
     method image() = "naveJugador.png"
 
     method vidas() = vidasEnMedios / 2
@@ -43,7 +42,7 @@ object jugador {
     }
 
     method disparar() {
-        const proyectil = new ProyectilJugador(position = position.up(1), trayectoria = arriba)
+        const proyectil = new ProyectilJugador(position = position.up(1), trayectoria = new Arriba())
         
         proyectil.lanzar()
     }
@@ -68,7 +67,6 @@ object jugador {
         if (game.hasVisual(self)) {
             game.removeVisual(self)
         }
-
         mecanicas.perder()
     }
 

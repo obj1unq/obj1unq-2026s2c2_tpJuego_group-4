@@ -13,45 +13,51 @@ object tablero {
     }
 }
 
-object arriba {
-    method puedeMoverDesde(position, limiteY, _limiteX) = position.y() < limiteY
+class Direccion {
+
+    method puedeMoverDesde(position, limiteY, _limiteX) 
 
     method siguiente(position) {
-        const nueva = position.up(1) 
+        const nueva = self.nuevaPos(position) 
         tablero.validarDentro(nueva)
         return nueva
     }
+
+    method nuevaPos(position) = 0
+
+}
+
+class Arriba inherits Direccion {
+    
+    override method nuevaPos(position) = position.up(1) 
+
+    override method puedeMoverDesde(position, limiteY, _limiteX) = position.y() < limiteY
+
 }
 
 
-object abajo {
-    method puedeMoverDesde(position, _limiteY, _limiteX) = position.y() > 0
+class Abajo inherits Direccion {
+    
+    override method puedeMoverDesde(position, _limiteY, _limiteX) = position.y() > 0
 
-    method siguiente(position) {
-        const nueva = position.down(1) 
-        tablero.validarDentro(nueva)
-        return nueva
-    }
+    override method nuevaPos(position) = position.down(1)
+
 }
 
-object derecha {
-    method puedeMoverDesde(position, _limiteY, limiteX) = position.x() < limiteX
+class Derecha inherits Direccion{
+ 
+    override method puedeMoverDesde(position, _limiteY, limiteX) = position.x() < limiteX
 
-    method siguiente(position) {
-        const nueva = position.right(1) 
-        tablero.validarDentro(nueva)
-        return nueva
-    }
+    override method nuevaPos(position) = position.right(1)
+    
 }
 
-object izquierda{
-    method puedeMoverDesde(position, _limiteY, _limiteX) = position.x() > 0
+class Izquierda inherits Direccion{
 
-    method siguiente(position) {
-        const nueva = position.left(1) 
-        tablero.validarDentro(nueva)
-        return nueva
-    }
+    override method puedeMoverDesde(position, _limiteY, _limiteX) = position.x() > 0
+  
+    override method nuevaPos(position) = position.left(1)
+
 }
 
 class Trayectoria {
@@ -71,5 +77,7 @@ class Trayectoria {
             origen.y() + ((destino.y() - origen.y()) * avance).round()
         )
     }
+
+    method nuevaPos(position) = self.siguiente(position) 
 
 }
