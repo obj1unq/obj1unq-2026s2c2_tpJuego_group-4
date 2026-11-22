@@ -24,6 +24,9 @@ class ContadorDePuntaje {     // sirve para el score solamente, la vida se manej
     method reiniciar() {
         valor = 0
     }
+
+    method esBlancoDe(bando) = false
+
 }
 
 class Digito {
@@ -36,6 +39,8 @@ class Digito {
     method position() = contador.position().right(self.offset())
 
     method offset() 
+
+    method esBlancoDe(bando) = false
 }
 
 class Unidad inherits Digito{
@@ -87,6 +92,8 @@ class ContadorDeVidas {
     }
 
     method imagenDelCorazon(indice) = corazones.get(indice).image()
+
+    method esBlancoDe(bando) = false
 }
 
 class Vida {
@@ -94,19 +101,28 @@ class Vida {
     var property estado = corazonCompleto
 
     method image() = estado.image()
+
+    method esBlancoDe(bando) = false
+
 }
 
 // ESTADOS DEL CORAZON
 object corazonCompleto {
     method image() = "coraCompleto.png"
+
+    method esBlancoDe(bando) = false
 }
 
 object medioCorazon {
     method image() = "medioCora.png"
+
+    method esBlancoDe(bando) = false
 }
 
 object corazonVacio {
     method image() = "sinCora.png"
+
+    method esBlancoDe(bando) = false
 }
 //
 
@@ -138,6 +154,8 @@ object score {
     method reiniciar() {
         contador.reiniciar()
     }
+
+    method esBlancoDe(bando) = false
 }
 
 object contadorDeVidas {
@@ -152,4 +170,6 @@ object contadorDeVidas {
     }
 
     method imagenDelCorazon(indice) = contador.imagenDelCorazon(indice)
+
+    method esBlancoDe(bando) = false
 }

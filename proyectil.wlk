@@ -38,7 +38,7 @@ class Proyectil {
     }
 
     method mover() {
-        const siguiente = trayectoria.siguiente(position)
+        const siguiente = trayectoria.nuevaPos(position)
 
         if (tablero.dentro(siguiente)) {
             position = siguiente

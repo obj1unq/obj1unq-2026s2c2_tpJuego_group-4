@@ -35,10 +35,10 @@ object mecanicas {
     }
 
     method configurarControles() {
-        keyboard.w().onPressDo({estado.mover(arriba)})
-        keyboard.s().onPressDo({estado.mover(abajo)})
-        keyboard.a().onPressDo({estado.mover(izquierda)})
-        keyboard.d().onPressDo({estado.mover(derecha)})
+        keyboard.w().onPressDo({estado.mover(new Arriba())})
+        keyboard.s().onPressDo({estado.mover(new Abajo())})
+        keyboard.a().onPressDo({estado.mover(new Izquierda())})
+        keyboard.d().onPressDo({estado.mover(new Derecha())})
         keyboard.space().onPressDo({estado.disparar()})
         self.configurarReinicio()
     }

@@ -43,7 +43,7 @@ object jugador {
     }
 
     method disparar() {
-        const proyectil = new ProyectilJugador(position = position.up(1), trayectoria = arriba)
+        const proyectil = new ProyectilJugador(position = position.up(1), trayectoria = new Arriba())
         
         proyectil.lanzar()
     }

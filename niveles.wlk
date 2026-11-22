@@ -39,7 +39,7 @@ object nivel1 inherits Nivel {
 }
 
 object nivel2 inherits Nivel {
-    override method puntosParaGanar() = 500
+    override method puntosParaGanar() = 200
 
     override method siguienteNivel() = nivel3
 
