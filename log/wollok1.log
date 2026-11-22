@@ -1,0 +1,112 @@
+{"level":"info","message":"⌛ Building environment","timeElapsed":352,"timestamp":"2026-11-22T18:19:21.061Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":535,"timestamp":"2026-11-22T18:19:21.603Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":393,"timestamp":"2026-11-22T18:19:21.996Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":362,"timestamp":"2026-11-22T18:19:22.360Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":377,"timestamp":"2026-11-22T18:19:22.738Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":276,"timestamp":"2026-11-22T18:19:23.019Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":334,"timestamp":"2026-11-22T18:19:23.355Z"}
+{"level":"info","message":"⌛ Validating mecanicas.wlk","timeElapsed":275,"timestamp":"2026-11-22T18:19:23.633Z"}
+{"level":"info","message":"⌛ Validating naveJugador.wlk","timeElapsed":334,"timestamp":"2026-11-22T18:19:24.009Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":145,"timestamp":"2026-11-22T18:19:24.158Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":115,"timestamp":"2026-11-22T18:19:24.274Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":152,"timestamp":"2026-11-22T18:19:24.427Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":173,"timestamp":"2026-11-22T18:19:24.611Z"}
+{"level":"info","message":"⌛ Validating mecanicas.wlk","timeElapsed":185,"timestamp":"2026-11-22T18:19:24.796Z"}
+{"level":"info","message":"⌛ Validating juegoTests.wtest","timeElapsed":282,"timestamp":"2026-11-22T18:19:25.078Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":241,"timestamp":"2026-11-22T18:19:25.320Z"}
+{"level":"info","message":"⌛ Validating generador.wlk","timeElapsed":159,"timestamp":"2026-11-22T18:19:25.483Z"}
+{"level":"info","message":"⌛ Validating direcciones.wlk","timeElapsed":254,"timestamp":"2026-11-22T18:19:25.754Z"}
+{"level":"info","message":"⌛ Validating contador.wlk","timeElapsed":325,"timestamp":"2026-11-22T18:19:26.080Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":853,"timestamp":"2026-11-22T18:19:47.968Z"}
+{"level":"info","message":"⌛ Validating naveJugador.wlk","timeElapsed":781,"timestamp":"2026-11-22T18:19:48.906Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":233,"timestamp":"2026-11-22T18:19:49.141Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":218,"timestamp":"2026-11-22T18:19:49.360Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":153,"timestamp":"2026-11-22T18:19:49.514Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":151,"timestamp":"2026-11-22T18:19:49.667Z"}
+{"level":"info","message":"⌛ Validating mecanicas.wlk","timeElapsed":157,"timestamp":"2026-11-22T18:19:49.827Z"}
+{"level":"info","message":"⌛ Validating juegoTests.wtest","timeElapsed":173,"timestamp":"2026-11-22T18:19:50.001Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":132,"timestamp":"2026-11-22T18:19:50.134Z"}
+{"level":"info","message":"⌛ Validating generador.wlk","timeElapsed":184,"timestamp":"2026-11-22T18:19:50.319Z"}
+{"level":"info","message":"⌛ Validating direcciones.wlk","timeElapsed":155,"timestamp":"2026-11-22T18:19:50.476Z"}
+{"level":"info","message":"⌛ Validating contador.wlk","timeElapsed":227,"timestamp":"2026-11-22T18:19:50.704Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":483,"timestamp":"2026-11-22T18:19:51.199Z"}
+{"level":"info","message":"⌛ Validating naveJugador.wlk","timeElapsed":212,"timestamp":"2026-11-22T18:19:51.441Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":140,"timestamp":"2026-11-22T18:19:51.581Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":137,"timestamp":"2026-11-22T18:19:51.719Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":143,"timestamp":"2026-11-22T18:19:51.863Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":150,"timestamp":"2026-11-22T18:19:52.014Z"}
+{"level":"info","message":"⌛ Validating mecanicas.wlk","timeElapsed":131,"timestamp":"2026-11-22T18:19:52.145Z"}
+{"level":"info","message":"⌛ Validating juegoTests.wtest","timeElapsed":120,"timestamp":"2026-11-22T18:19:52.267Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":123,"timestamp":"2026-11-22T18:19:52.391Z"}
+{"level":"info","message":"⌛ Validating generador.wlk","timeElapsed":136,"timestamp":"2026-11-22T18:19:52.528Z"}
+{"level":"info","message":"⌛ Validating direcciones.wlk","timeElapsed":130,"timestamp":"2026-11-22T18:19:52.659Z"}
+{"level":"info","message":"⌛ Validating contador.wlk","timeElapsed":129,"timestamp":"2026-11-22T18:19:52.789Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":188,"timestamp":"2026-11-22T18:20:38.246Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":354,"timestamp":"2026-11-22T18:20:38.601Z"}
+{"level":"info","message":"Removing diagnostics from /c:/Users/andre/Downloads/Python/POO-1/ObjetosI-2026s2/obj1unq-2026s2c2_tpJuego_group-4/assets/fondo.png","timestamp":"2026-11-22T18:20:38.711Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":150,"timestamp":"2026-11-22T18:20:44.444Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":291,"timestamp":"2026-11-22T18:20:44.736Z"}
+{"level":"info","message":"Removing diagnostics from /c:/Users/andre/Downloads/Python/POO-1/ObjetosI-2026s2/obj1unq-2026s2c2_tpJuego_group-4/assets/fondo2.png","timestamp":"2026-11-22T18:20:44.849Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1727,"timestamp":"2026-11-22T18:21:00.489Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":187,"timestamp":"2026-11-22T18:34:21.947Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":216,"timestamp":"2026-11-22T18:34:22.165Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":272,"timestamp":"2026-11-22T18:34:22.508Z"}
+{"level":"info","message":"Removing diagnostics from /c:/Users/andre/Downloads/Python/POO-1/ObjetosI-2026s2/obj1unq-2026s2c2_tpJuego_group-4/assets/fondo.png","timestamp":"2026-11-22T18:34:22.508Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":170,"timestamp":"2026-11-22T18:34:22.770Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":185,"timestamp":"2026-11-22T18:34:22.963Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":215,"timestamp":"2026-11-22T18:34:23.179Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":225,"timestamp":"2026-11-22T18:34:23.405Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":287,"timestamp":"2026-11-22T18:34:23.694Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":167,"timestamp":"2026-11-22T18:34:23.884Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":158,"timestamp":"2026-11-22T18:34:24.043Z"}
+{"level":"info","message":"⌛ Validating juegoTests.wtest","timeElapsed":146,"timestamp":"2026-11-22T18:34:24.190Z"}
+{"level":"info","message":"⌛ Validating generador.wlk","timeElapsed":144,"timestamp":"2026-11-22T18:34:24.335Z"}
+{"level":"info","message":"⌛ Validating direcciones.wlk","timeElapsed":141,"timestamp":"2026-11-22T18:34:24.477Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":266,"timestamp":"2026-11-22T18:34:26.023Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":288,"timestamp":"2026-11-22T18:34:26.312Z"}
+{"level":"info","message":"Removing diagnostics from /c:/Users/andre/Downloads/Python/POO-1/ObjetosI-2026s2/obj1unq-2026s2c2_tpJuego_group-4/assets/fondo2.png","timestamp":"2026-11-22T18:34:26.414Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":816698,"timestamp":"2026-11-22T18:34:35.447Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1279,"timestamp":"2026-11-22T18:34:40.183Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":363016,"timestamp":"2026-11-22T18:40:41.924Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1634,"timestamp":"2026-11-22T18:40:46.783Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":49158,"timestamp":"2026-11-22T18:41:34.307Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1542,"timestamp":"2026-11-22T18:41:38.955Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":68786,"timestamp":"2026-11-22T18:42:46.195Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1639,"timestamp":"2026-11-22T18:42:47.885Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":35218,"timestamp":"2026-11-22T18:43:21.464Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1528,"timestamp":"2026-11-22T18:43:25.986Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":4124383,"timestamp":"2026-11-22T19:52:08.841Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1945,"timestamp":"2026-11-22T19:52:14.222Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":4541672,"timestamp":"2026-11-22T21:07:53.958Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":1882,"timestamp":"2026-11-22T21:08:00.442Z"}
+{"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\andre\\Downloads\\Python\\POO-1\\ObjetosI-2026s2\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":20910,"timestamp":"2026-11-22T21:08:19.470Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":586,"timestamp":"2026-11-22T21:20:49.812Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":421,"timestamp":"2026-11-22T21:20:50.241Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":337,"timestamp":"2026-11-22T21:20:51.223Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":294,"timestamp":"2026-11-22T21:20:51.530Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":1000,"timestamp":"2026-11-22T21:20:52.534Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":800,"timestamp":"2026-11-22T21:20:53.342Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":577,"timestamp":"2026-11-22T21:20:53.931Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":479,"timestamp":"2026-11-22T21:20:54.453Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":366,"timestamp":"2026-11-22T21:20:54.823Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":701,"timestamp":"2026-11-22T21:20:55.527Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":612,"timestamp":"2026-11-22T21:20:56.161Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":440,"timestamp":"2026-11-22T21:20:56.601Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":456,"timestamp":"2026-11-22T21:20:57.066Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":658,"timestamp":"2026-11-22T21:20:57.778Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":699,"timestamp":"2026-11-22T21:20:58.481Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":396,"timestamp":"2026-11-22T21:20:58.881Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":367,"timestamp":"2026-11-22T21:20:59.288Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":316,"timestamp":"2026-11-22T21:20:59.604Z"}
+{"level":"info","message":"⌛ Validating proyectil.wlk","timeElapsed":285,"timestamp":"2026-11-22T21:20:59.895Z"}
+{"level":"info","message":"⌛ Validating pantallas.wlk","timeElapsed":307,"timestamp":"2026-11-22T21:21:00.203Z"}
+{"level":"info","message":"⌛ Validating niveles.wlk","timeElapsed":139,"timestamp":"2026-11-22T21:21:00.345Z"}
+{"level":"info","message":"⌛ Validating navesEnemigas.wlk","timeElapsed":174,"timestamp":"2026-11-22T21:21:00.521Z"}
+{"level":"info","message":"⌛ Validating naveJugador.wlk","timeElapsed":168,"timestamp":"2026-11-22T21:21:00.690Z"}
+{"level":"info","message":"⌛ Validating mecanicas.wlk","timeElapsed":177,"timestamp":"2026-11-22T21:21:00.867Z"}
+{"level":"info","message":"⌛ Validating juegoTests.wtest","timeElapsed":181,"timestamp":"2026-11-22T21:21:01.055Z"}
+{"level":"info","message":"⌛ Validating generador.wlk","timeElapsed":178,"timestamp":"2026-11-22T21:21:01.234Z"}
+{"level":"info","message":"⌛ Validating direcciones.wlk","timeElapsed":201,"timestamp":"2026-11-22T21:21:01.437Z"}
+{"level":"info","message":"⌛ Validating contador.wlk","timeElapsed":244,"timestamp":"2026-11-22T21:21:01.683Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":463,"timestamp":"2026-11-22T21:24:27.225Z"}
+{"level":"info","message":"⌛ Validating juego.wpgm","timeElapsed":283,"timestamp":"2026-11-22T21:24:27.514Z"}
