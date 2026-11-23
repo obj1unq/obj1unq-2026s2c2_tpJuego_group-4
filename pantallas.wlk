@@ -3,10 +3,12 @@ import wollok.game.*
 
 
 object winWindow {
+    method position() = game.at(2,2)
     method image() = "fondoWin.png"
 }
 
 object gameOverWindow {
+    method position() = game.at(2,2)
     method image() = "fondoPerdedor.png"
 }
 

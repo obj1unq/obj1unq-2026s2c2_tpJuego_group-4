@@ -46,10 +46,14 @@ object mecanicas {
     
     method perder() {
         estado.perder()
+        game.boardGround("fondo.png")
+        game.addVisual(gameOverWindow)
     }
 
     method ganar() {
         estado.ganar()
+        game.boardGround("fondo.png")
+        game.addVisual(winWindow)
     }
 
     method completarNivel() {
@@ -69,7 +73,7 @@ object mecanicas {
 
     method finalizarEn(pantalla, nuevoEstado) {
         estado = nuevoEstado
-        game.clear()
+        game.allVisuals().forEach{ visual => game.removeVisual(visual) }
         game.boardGround(pantalla)
     }
 

@@ -260,3 +260,5 @@
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":303,"timestamp":"2026-11-22T21:19:40.780Z"}
 {"exitCode":"SIGHUP","level":"info","message":"👾 Game executed juego.juego on c:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4","timeElapsed":17302,"timestamp":"2026-11-22T21:19:57.777Z"}
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34mjuego.juego\u001b[39m\u001b[23m on \u001b[3m\u001b[34mc:\\Users\\unuas\\OneDrive\\Desktop\\Lucas\\obj1unq-2026s2c2_tpJuego_group-4\u001b[39m\u001b[23m","ok":true,"timeElapsed":291,"timestamp":"2026-11-22T21:19:59.377Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":164,"timestamp":"2026-11-23T16:25:58.344Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":118,"timestamp":"2026-11-23T16:25:59.091Z"}
