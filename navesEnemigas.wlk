@@ -121,7 +121,7 @@ class Ligero inherits Enemigo {
 
     override method puntosQueOtorga() = 25
 
-    override method danioEnMedios() = 1
+    override method danioEnMedios() = 20//1
 
     override method intervaloDisparo() = 5000
 }
@@ -155,7 +155,7 @@ class Kamikaze inherits Enemigo {
 
     override method puntosQueOtorga() = 100
 
-    override method danioEnMedios() = 2 
+    override method danioEnMedios() = 20//2 
 
     override method intervaloDisparo() = 7000 
 

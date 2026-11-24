@@ -11,13 +11,43 @@ import niveles.*
 object mecanicas {
     var estado = estadoEnJuego       // dejar este estado para que la mecanica trabaje según él??? 
     var enemigos = []
+    var controlesConfigurados = false
 
+    method iniciarMenu() {
+        self.mostrarInicio()
+    }
 
+    method limpiarPantalla() {
+        game.clear()
+        controlesConfigurados = false
+        self.configurarControles()
+    }
+
+    method mostrarInicio() {
+        estado = estadoInicio
+        self.limpiarPantalla()
+        game.addVisual(inicio)
+    }
+
+    method mostrarInformacion() {
+        estado = estadoInformacion
+        self.limpiarPantalla()
+        game.addVisual(informacion)
+    }
+
+    method mostrarReadyInicial() {
+        estado = estadoReadyInicial
+        self.limpiarPantalla()
+        nivel1.cargar()
+    }
 
     method iniciarPartida(enemigosIniciales) {
         enemigos = enemigosIniciales
         estado = estadoEnJuego
-        game.boardGround("fondoCarga.png")
+        //game.boardGround("fondoCarga.png")
+        if (not game.hasVisual(fondo)) {
+            game.addVisual(fondo)
+        }
         self.configurarControles()
         game.addVisual(jugador)
         self.configurarContadores()     // de vida y del puntaje
@@ -32,16 +62,20 @@ object mecanicas {
     }
 
     method configurarControles() {
-        keyboard.w().onPressDo({estado.mover(new Arriba())})
-        keyboard.s().onPressDo({estado.mover(new Abajo())})
-        keyboard.a().onPressDo({estado.mover(new Izquierda())})
-        keyboard.d().onPressDo({estado.mover(new Derecha())})
-        keyboard.space().onPressDo({estado.disparar()})
-        self.configurarReinicio()
+        if (not controlesConfigurados) {
+            keyboard.w().onPressDo({estado.mover(new Arriba())})
+            keyboard.s().onPressDo({estado.mover(new Abajo())})
+            keyboard.a().onPressDo({estado.mover(new Izquierda())})
+            keyboard.d().onPressDo({estado.mover(new Derecha())})
+            keyboard.c().onPressDo({estado.avanzar()})
+            keyboard.space().onPressDo({estado.disparar()})
+            self.configurarReinicio()
+            controlesConfigurados = true
+        }
     }
 
     method configurarReinicio() {
-        keyboard.r().onPressDo({ self.reiniciarJuego() })
+        keyboard.r().onPressDo({ estado.reiniciar() })
     }
     
     method perder() {
@@ -63,20 +97,23 @@ object mecanicas {
 
     method cambiarNivel(nivel) {
         enemigos.forEach{ enemigo => enemigo.desaparecer() }
-        game.clear()
+        estado = estadoReadyInicial
+        self.limpiarPantalla()
         nivel.cargar()
     }
 
     method finalizarEn(pantalla, nuevoEstado) {
         estado = nuevoEstado
-        game.clear()
-        game.boardGround(pantalla)
+        self.limpiarPantalla()
+        //game.boardGround(pantalla)
+        game.addVisual(pantalla)
     }
 
     method reiniciarJuego() {
         enemigos.forEach{ enemigo => enemigo.desaparecer() }
-        game.clear()
+        self.limpiarPantalla()
         jugador.reiniciar()
+        estado = estadoReadyInicial
         nivel1.cargar()
     }
 
@@ -84,7 +121,7 @@ object mecanicas {
 }
 
 object estadoEnJuego {
-    //method nombre() = "en juego"
+    method avanzar() {}
 
     method mover(direccion) {
         jugador.moverseA(direccion)
@@ -93,6 +130,8 @@ object estadoEnJuego {
     method disparar() {
         jugador.disparar()
     }
+
+    method reiniciar() {}
 
     method perder() {
         mecanicas.finalizarEn(gameOverWindow, estadoPerdido)
@@ -104,6 +143,8 @@ object estadoEnJuego {
 }
 
 class EstadoFinal {
+    method avanzar() {}
+
     method mover(_direccion) {}
 
     method disparar() {}
@@ -115,8 +156,24 @@ class EstadoFinal {
     method reiniciar() {}
 }
 
+object estadoInicio inherits EstadoFinal {
+    override method avanzar() {
+        mecanicas.mostrarInformacion()
+    }
+}
+
+object estadoInformacion inherits EstadoFinal {
+    override method avanzar() {
+        mecanicas.mostrarReadyInicial()
+    }
+}
+
+object estadoReadyInicial inherits EstadoFinal {}
+
 object estadoPerdido inherits EstadoFinal {
-   
+    override method reiniciar() {
+        mecanicas.reiniciarJuego()
+    }
 }
 
 object estadoGanado inherits EstadoFinal {

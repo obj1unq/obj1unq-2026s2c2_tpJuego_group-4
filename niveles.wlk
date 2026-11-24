@@ -12,6 +12,8 @@ import pantallas.*
 class Nivel {
     method puntosParaGanar() = 0
 
+    method danioDeNave() = self.enemigosPorNivel().get(0).danioEnMedios() / 2
+
     method siguienteNivel() = null
 
     method cargar() {
@@ -61,7 +63,6 @@ object nivel3 inherits Nivel {
     override method puntosParaGanar() = 999
 
     override method enemigosPorNivel() {
-        return [new Jefe(position = game.at(5, 7), posicionInicial = game.at(5, 7))]
+        return [new Jefe(position = game.at(5, 7), posicionInicial = game.at(5, 6))]
     }
-    
 }

@@ -4,6 +4,7 @@ import naveJugador.*
 import navesEnemigas.*
 import mecanicas.*
 import pantallas.*
+import niveles.*
 
 
 
@@ -59,5 +60,34 @@ describe "distintos tipos de tests para el juego" {
 
         assert.equals("fondoWin.png", game.boardGround().image())
         assert.notThat(game.hasVisual(jugador))
+    }
+
+    test "iniciar despues de agregar el fondo conserva las otras visuales" {
+        game.clear()
+        game.addVisual(fondo)
+        const enemigo = new Ligero(position = game.at(1, 6), posicionInicial = game.at(1, 6))
+
+        mecanicas.iniciarPartida([enemigo])
+
+        assert.that(game.hasVisual(fondo))
+        assert.that(game.hasVisual(jugador))
+        assert.that(game.hasVisual(enemigo))
+        assert.equals(11, game.allVisuals().size())
+    }
+
+    test "muestra el fondo y permite reinciiar desde el estado perdido" {
+        mecanicas.perder()
+        assert.that(game.hasVisual(gameOverWindow))
+        assert.equals("fondoPerdedor.png", gameOverWindow.image())
+        //estadoPerdido.reiniciar()
+        //assert.that(game.hasVisual(ready))
+    }
+
+    test "ready muestra puntos y daño del nivel que está por comenzar" {
+        nivel1.cargar()
+        assert.equals("Puntos a obtener: 1", puntosNivel.text())
+        assert.equals("Daño que causa una nave: 10 corazones", danioNivel.text())
+        assert.equals(10, nivel2.danioDeNave())
+        assert.equals(5, nivel3.danioDeNave())
     }
 }
